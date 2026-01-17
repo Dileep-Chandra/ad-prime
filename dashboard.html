@@ -1,0 +1,850 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- meta tag start-->
+  <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SwapStar</title>
+  <!--fav icons-->
+  <link rel="apple-touch-icon" sizes="57x57" href="img/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="img/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="img/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="img/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="img/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="img/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="img/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="img/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="img/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="img/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+  <link rel="manifest" href="img/manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="img/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <!--fav icons-->
+  <!-- meta tag end-->
+
+  <!-- bootstrap-->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/529e178bbe.js" crossorigin="anonymous"></script>
+ <!--bootstrap end-->
+
+ <!--custom css-->
+ <link rel="stylesheet" type="text/css" href="./css/main.css">
+ <!--custom css end-->
+
+  <!--fonts-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+<!--end fonts-->
+
+<!--icons-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<!--end icons-->
+
+<!--jquery-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<!--jquery end-->
+
+<!--chart library-->
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+<script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+<!--chart library end-->
+
+
+<!---country dropdown-->
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/0.8.2/css/flag-icon.min.css">
+ 
+
+</head>
+
+<body>
+   <div class="header main__logo" id="header-menu">
+   <nav class="navbar navbar-expand-lg navbar-dark ">
+     <a class="navbar-brand" href="/"><img src="img/logo-swapstar.svg"> <span class="add__text">Primes Scan<br>
+         <span class="text__explore">Ad:Prime Explorer</span>
+       </span>
+
+
+     </a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+       <span class="navbar-toggler-icon"></span>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarNavDropdown">
+       <div class="d-block d-sm-none" id="close-nav">
+         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+           <span class="material-symbols-outlined">
+             close
+           </span>
+         </button>
+       </div>
+       <ul class="navbar-nav mr-auto" id="main-navbar">
+           <li class="nav-item">
+             <a class="nav-link" href="#">Primes-IT <span class="previch__321"><img src="img/it-1.png" alt=""></span>
+               <p class="text__1432">€9.0 UV </p>
+             </a>
+           </li>
+           <li class="nav-item">
+             <a class="nav-link" href="#">Primes-CH <span class="previch__321"><img src="img/ch-1.png" alt=""></span>
+               <p class="text__1432">CHF 9.00 UV </p>
+             </a>
+           </li>
+           
+
+           <li class="nav-item">
+             <a class="nav-link" href="#">Primes-AT <span class="previch__321"><img src="img/ATat-1.png" alt="">
+               <p class="text__1432">€9.0 UV </p>
+             </a>
+           </li>
+
+           <li class="nav-item">
+             <a class="nav-link" href="#">Primes-US <span class="previch__321"><img src="img/us-1.png" alt="">
+               <p class="text__1432">$9.0 UV</p>
+             </a>
+           </li>
+
+           <li class="nav-item ">
+             <a class="nav-link" href="#">Primes-DE: <span class="previch__321"><img src="img/de-1.png" alt="">
+               <p class="text__1432">€9.0 UV </p>
+             </a>
+             <!-- /?method=Swap Transaction -->
+           </li>
+
+           <li class="nav-item ">
+             <a class="nav-link" href="#">ADTT-Global: <span class="previch__321"><img src="img/gl-1.png" alt="">
+               <p class="text__1432">€9.0  UV</p>
+             </a>
+             <!-- /?method=Swap Transaction -->
+           </li>
+           
+
+           <!--<li class="nav-item">
+             <a class="nav-link" href="#">ADTT-IN <span class="previch__321"><img src="img/in-1.png" alt="">
+               <p class="text__1432">INR<?php echo number_format($currentAdttPrIn['adtt_price'], 2) ?> UV</p>
+             </a>
+           </li>  -->
+
+
+
+
+         <li class="nav-item text_45633">
+               <div class="dropdown">
+                  <a class="nav-link  " href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                     <i class="fa fa-chevron-down ml-1" aria-hidden="true"></i>
+                  </a>
+                  <div class="dropdown-menu">
+                     <!--<a class="dropdown-item" href="#"> All</a>
+                     <a class="dropdown-item" href="#"> ADTT to UV</a>
+                     <a class="dropdown-item" href="#"> UV to ADTT</a>
+                     <a class="dropdown-item" href="#"> UV to ADTT</a>
+                     <a class="dropdown-item" href="#"> UV to ADTT</a>    -->
+
+                  </div>
+               </div>
+            </li>
+
+       </ul>
+       <div class="main__container">
+         <img src="img/backbtn.svg" alt="">
+       </div>
+     </div>
+   </nav>
+ </div>
+
+ <script>
+   (function($) {
+     $(function() {
+       var isoCountries = [{
+           id: '',
+           text: ''
+         },
+         {
+           id: 'IT',
+           text: 'Italy',
+           currency: 'EUR'
+         },
+         {
+           id: 'ES',
+           text: 'Spain',
+           currency: 'EUR'
+         },
+         {
+           id: 'AT',
+           text: 'Austria',
+           currency: 'EUR'
+         },
+         {
+           id: 'DE',
+           text: 'Germany',
+           currency: 'EUR'
+         },
+         {
+           id: 'PL',
+           text: 'Poland',
+           currency: 'EUR'
+         },
+         {
+           id: 'FR',
+           text: 'France',
+           currency: 'EUR'
+         },
+         {
+           id: 'RO',
+           text: 'Romania',
+           currency: 'EUR'
+         },
+         {
+           id: 'SI',
+           text: 'Slovenia',
+           currency: 'EUR'
+         },
+         {
+           id: 'RS',
+           text: 'Serbia',
+           currency: 'RSD'
+         },
+         {
+           id: 'CH',
+           text: 'Switzerland',
+           currency: 'CHF'
+         },
+         {
+           id: 'GB',
+           text: 'UK',
+           currency: 'GBP'
+         },
+         {
+           id: 'US',
+           text: 'USA',
+           currency: 'USD'
+         },
+         /* { id: 'AS', text: 'American Samoa'},
+          { id: 'AD', text: 'Andorra'},
+          { id: 'AO', text: 'Angola'},
+          { id: 'AI', text: 'Anguilla'},
+          { id: 'AQ', text: 'Antarctica'},
+          { id: 'AG', text: 'Antigua And Barbuda'},
+          { id: 'AR', text: 'Argentina'},
+          { id: 'AM', text: 'Armenia'},
+          { id: 'AW', text: 'Aruba'},
+          { id: 'AU', text: 'Australia'},
+          { id: 'AT', text: 'Austria'},
+          { id: 'AZ', text: 'Azerbaijan'},
+          { id: 'BS', text: 'Bahamas'},
+          { id: 'BH', text: 'Bahrain'},
+          { id: 'BD', text: 'Bangladesh'},
+          { id: 'BB', text: 'Barbados'},
+          { id: 'BY', text: 'Belarus'},
+          { id: 'BE', text: 'Belgium'},
+          { id: 'BZ', text: 'Belize'},
+          { id: 'BJ', text: 'Benin'},
+          { id: 'BM', text: 'Bermuda'},
+          { id: 'BT', text: 'Bhutan'},
+          { id: 'BO', text: 'Bolivia'},
+          { id: 'BA', text: 'Bosnia And Herzegovina'},
+          { id: 'BW', text: 'Botswana'},
+          { id: 'BV', text: 'Bouvet Island'},
+          { id: 'BR', text: 'Brazil'},
+          { id: 'IO', text: 'British Indian Ocean Territory'},
+          { id: 'BN', text: 'Brunei Darussalam'},
+          { id: 'BG', text: 'Bulgaria'},
+          { id: 'BF', text: 'Burkina Faso'},
+          { id: 'BI', text: 'Burundi'},
+          { id: 'KH', text: 'Cambodia'},
+          { id: 'CM', text: 'Cameroon'},
+          { id: 'CA', text: 'Canada'},
+          { id: 'CV', text: 'Cape Verde'},
+          { id: 'KY', text: 'Cayman Islands'},
+          { id: 'CF', text: 'Central African Republic'},
+          { id: 'TD', text: 'Chad'},
+          { id: 'CL', text: 'Chile'},
+          { id: 'CN', text: 'China'},
+          { id: 'CX', text: 'Christmas Island'},
+          { id: 'CC', text: 'Cocos (Keeling) Islands'},
+          { id: 'CO', text: 'Colombia'},
+          { id: 'KM', text: 'Comoros'},
+          { id: 'CG', text: 'Congo'},
+          { id: 'CD', text: 'Congo}, Democratic Republic'},
+          { id: 'CK', text: 'Cook Islands'},
+          { id: 'CR', text: 'Costa Rica'},
+          { id: 'CI', text: 'Cote D\'Ivoire'},
+          { id: 'HR', text: 'Croatia'},
+          { id: 'CU', text: 'Cuba'},
+          { id: 'CY', text: 'Cyprus'},
+          { id: 'CZ', text: 'Czech Republic'},
+          { id: 'DK', text: 'Denmark'},
+          { id: 'DJ', text: 'Djibouti'},
+          { id: 'DM', text: 'Dominica'},
+          { id: 'DO', text: 'Dominican Republic'},
+          { id: 'EC', text: 'Ecuador'},
+          { id: 'EG', text: 'Egypt'},
+          { id: 'SV', text: 'El Salvador'},
+          { id: 'GQ', text: 'Equatorial Guinea'},
+          { id: 'ER', text: 'Eritrea'},
+          { id: 'EE', text: 'Estonia'},
+          { id: 'ET', text: 'Ethiopia'},
+          { id: 'FK', text: 'Falkland Islands (Malvinas)'},
+          { id: 'FO', text: 'Faroe Islands'},
+          { id: 'FJ', text: 'Fiji'},
+          { id: 'FI', text: 'Finland'},
+          { id: 'FR', text: 'France'},
+          { id: 'GF', text: 'French Guiana'},
+          { id: 'PF', text: 'French Polynesia'},
+          { id: 'TF', text: 'French Southern Territories'},
+          { id: 'GA', text: 'Gabon'},
+          { id: 'GM', text: 'Gambia'},
+          { id: 'GE', text: 'Georgia'},
+          { id: 'DE', text: 'Germany'},
+          { id: 'GH', text: 'Ghana'},
+          { id: 'GI', text: 'Gibraltar'},
+          { id: 'GR', text: 'Greece'},
+          { id: 'GL', text: 'Greenland'},
+          { id: 'GD', text: 'Grenada'},
+          { id: 'GP', text: 'Guadeloupe'},
+          { id: 'GU', text: 'Guam'},
+          { id: 'GT', text: 'Guatemala'},
+          { id: 'GG', text: 'Guernsey'},
+          { id: 'GN', text: 'Guinea'},
+          { id: 'GW', text: 'Guinea-Bissau'},
+          { id: 'GY', text: 'Guyana'},
+          { id: 'HT', text: 'Haiti'},
+          { id: 'HM', text: 'Heard Island & Mcdonald Islands'},
+          { id: 'VA', text: 'Holy See (Vatican City State)'},
+          { id: 'HN', text: 'Honduras'},
+          { id: 'HK', text: 'Hong Kong'},
+          { id: 'HU', text: 'Hungary'},
+          { id: 'IS', text: 'Iceland'},
+          { id: 'IN', text: 'India'},
+          { id: 'ID', text: 'Indonesia'},
+          { id: 'IR', text: 'Iran}, Islamic Republic Of'},
+          { id: 'IQ', text: 'Iraq'},
+          { id: 'IE', text: 'Ireland'},
+          { id: 'IM', text: 'Isle Of Man'},
+          { id: 'IL', text: 'Israel'},
+          { id: 'IT', text: 'Italy'},
+          { id: 'JM', text: 'Jamaica'},
+          { id: 'JP', text: 'Japan'},
+          { id: 'JE', text: 'Jersey'},
+          { id: 'JO', text: 'Jordan'},
+          { id: 'KZ', text: 'Kazakhstan'},
+          { id: 'KE', text: 'Kenya'},
+          { id: 'KI', text: 'Kiribati'},
+          { id: 'KR', text: 'Korea'},
+          { id: 'KW', text: 'Kuwait'},
+          { id: 'KG', text: 'Kyrgyzstan'},
+          { id: 'LA', text: 'Lao People\'s Democratic Republic'},
+          { id: 'LV', text: 'Latvia'},
+          { id: 'LB', text: 'Lebanon'},
+          { id: 'LS', text: 'Lesotho'},
+          { id: 'LR', text: 'Liberia'},
+          { id: 'LY', text: 'Libyan Arab Jamahiriya'},
+          { id: 'LI', text: 'Liechtenstein'},
+          { id: 'LT', text: 'Lithuania'},
+          { id: 'LU', text: 'Luxembourg'},
+          { id: 'MO', text: 'Macao'},
+          { id: 'MK', text: 'Macedonia'},
+          { id: 'MG', text: 'Madagascar'},
+          { id: 'MW', text: 'Malawi'},
+          { id: 'MY', text: 'Malaysia'},
+          { id: 'MV', text: 'Maldives'},
+          { id: 'ML', text: 'Mali'},
+          { id: 'MT', text: 'Malta'},
+          { id: 'MH', text: 'Marshall Islands'},
+          { id: 'MQ', text: 'Martinique'},
+          { id: 'MR', text: 'Mauritania'},
+          { id: 'MU', text: 'Mauritius'},
+          { id: 'YT', text: 'Mayotte'},
+          { id: 'MX', text: 'Mexico'},
+          { id: 'FM', text: 'Micronesia}, Federated States Of'},
+          { id: 'MD', text: 'Moldova'},
+          { id: 'MC', text: 'Monaco'},
+          { id: 'MN', text: 'Mongolia'},
+          { id: 'ME', text: 'Montenegro'},
+          { id: 'MS', text: 'Montserrat'},
+          { id: 'MA', text: 'Morocco'},
+          { id: 'MZ', text: 'Mozambique'},
+          { id: 'MM', text: 'Myanmar'},
+          { id: 'NA', text: 'Namibia'},
+          { id: 'NR', text: 'Nauru'},
+          { id: 'NP', text: 'Nepal'},
+          { id: 'NL', text: 'Netherlands'},
+          { id: 'AN', text: 'Netherlands Antilles'},
+          { id: 'NC', text: 'New Caledonia'},
+          { id: 'NZ', text: 'New Zealand'},
+          { id: 'NI', text: 'Nicaragua'},
+          { id: 'NE', text: 'Niger'},
+          { id: 'NG', text: 'Nigeria'},
+          { id: 'NU', text: 'Niue'},
+          { id: 'NF', text: 'Norfolk Island'},
+          { id: 'MP', text: 'Northern Mariana Islands'},
+          { id: 'NO', text: 'Norway'},
+          { id: 'OM', text: 'Oman'},
+          { id: 'PK', text: 'Pakistan'},
+          { id: 'PW', text: 'Palau'},
+          { id: 'PS', text: 'Palestinian Territory}, Occupied'},
+          { id: 'PA', text: 'Panama'},
+          { id: 'PG', text: 'Papua New Guinea'},
+          { id: 'PY', text: 'Paraguay'},
+          { id: 'PE', text: 'Peru'},
+          { id: 'PH', text: 'Philippines'},
+          { id: 'PN', text: 'Pitcairn'},
+          { id: 'PL', text: 'Poland'},
+          { id: 'PT', text: 'Portugal'},
+          { id: 'PR', text: 'Puerto Rico'},
+          { id: 'QA', text: 'Qatar'},
+          { id: 'RE', text: 'Reunion'},
+          { id: 'RO', text: 'Romania'},
+          { id: 'RU', text: 'Russian Federation'},
+          { id: 'RW', text: 'Rwanda'},
+          { id: 'BL', text: 'Saint Barthelemy'},
+          { id: 'SH', text: 'Saint Helena'},
+          { id: 'KN', text: 'Saint Kitts And Nevis'},
+          { id: 'LC', text: 'Saint Lucia'},
+          { id: 'MF', text: 'Saint Martin'},
+          { id: 'PM', text: 'Saint Pierre And Miquelon'},
+          { id: 'VC', text: 'Saint Vincent And Grenadines'},
+          { id: 'WS', text: 'Samoa'},
+          { id: 'SM', text: 'San Marino'},
+          { id: 'ST', text: 'Sao Tome And Principe'},
+          { id: 'SA', text: 'Saudi Arabia'},
+          { id: 'SN', text: 'Senegal'},
+          { id: 'RS', text: 'Serbia'},
+          { id: 'SC', text: 'Seychelles'},
+          { id: 'SL', text: 'Sierra Leone'},
+          { id: 'SG', text: 'Singapore'},
+          { id: 'SK', text: 'Slovakia'},
+          { id: 'SI', text: 'Slovenia'},
+          { id: 'SB', text: 'Solomon Islands'},
+          { id: 'SO', text: 'Somalia'},
+          { id: 'ZA', text: 'South Africa'},
+          { id: 'GS', text: 'South Georgia And Sandwich Isl.'},
+          { id: 'ES', text: 'Spain'},
+          { id: 'LK', text: 'Sri Lanka'},
+          { id: 'SD', text: 'Sudan'},
+          { id: 'SR', text: 'Suriname'},
+          { id: 'SJ', text: 'Svalbard And Jan Mayen'},
+          { id: 'SZ', text: 'Swaziland'},
+          { id: 'SE', text: 'Sweden'},
+          { id: 'CH', text: 'Switzerland'},
+          { id: 'SY', text: 'Syrian Arab Republic'},
+          { id: 'TW', text: 'Taiwan'},
+          { id: 'TJ', text: 'Tajikistan'},
+          { id: 'TZ', text: 'Tanzania'},
+          { id: 'TH', text: 'Thailand'},
+          { id: 'TL', text: 'Timor-Leste'},
+          { id: 'TG', text: 'Togo'},
+          { id: 'TK', text: 'Tokelau'},
+          { id: 'TO', text: 'Tonga'},
+          { id: 'TT', text: 'Trinidad And Tobago'},
+          { id: 'TN', text: 'Tunisia'},
+          { id: 'TR', text: 'Turkey'},
+          { id: 'TM', text: 'Turkmenistan'},
+          { id: 'TC', text: 'Turks And Caicos Islands'},
+          { id: 'TV', text: 'Tuvalu'},
+          { id: 'UG', text: 'Uganda'},
+          { id: 'UA', text: 'Ukraine'},
+          { id: 'AE', text: 'United Arab Emirates'},
+          { id: 'GB', text: 'United Kingdom'},
+          { id: 'US', text: 'United States'},
+          { id: 'UM', text: 'United States Outlying Islands'},
+          { id: 'UY', text: 'Uruguay'},
+          { id: 'UZ', text: 'Uzbekistan'},
+          { id: 'VU', text: 'Vanuatu'},
+          { id: 'VE', text: 'Venezuela'},
+          { id: 'VN', text: 'Viet Nam'},
+          { id: 'VG', text: 'Virgin Islands}, British'},
+          { id: 'VI', text: 'Virgin Islands}, U.S.'},
+          { id: 'WF', text: 'Wallis And Futuna'},
+          { id: 'EH', text: 'Western Sahara'},
+          { id: 'YE', text: 'Yemen'},
+          { id: 'ZM', text: 'Zambia'},
+          { id: 'ZW', text: 'Zimbabwe'}*/
+       ];
+
+       function formatCountry(country) {
+         if (!country.id) {
+           return country.text;
+         }
+         var $country = $(
+           '<span class="flag-icon flag-icon-' + country.id.toLowerCase() + ' flag-icon-squared"></span>' +
+           '<span class="flag-text">' + country.text + "</span>" +
+           '<span class="flag-currency">' + country.currency + "</span>"
+         );
+         return $country;
+       };
+
+       //Assuming you have a select element with name country
+       // e.g. <select name="name"></select>
+
+       $("[name='country']").select2({
+         placeholder: "Select a country",
+         templateResult: formatCountry,
+         data: isoCountries
+       });
+
+
+
+     });
+   })(jQuery);
+
+   function abc() {
+     var countryId = $("#country").val();
+     $("#countrydata").val(countryId);
+     document.getElementById("searchForm").submit();
+   }
+ </script>
+ <style>
+   span.flag-icon {
+     margin-right: 10px;
+   }
+
+   .select2-container {
+     min-width: 160px
+   }
+
+   span.flag-currency {
+     float: right;
+   }
+
+   .select2-dropdown {
+     top: 13px;
+   }
+
+   .select2-container--default .select2-selection--single .select2-selection__placeholder {
+     color: #fff;
+   }
+
+   .select2-container--default .select2-selection--single {
+     background-color: transparent !important;
+     border: none !important;
+     border-radius: 0px !important;
+   }
+
+   .select2-container--default .select2-selection--single .select2-selection__arrow {
+     right: 30px !important;
+   }
+
+   .select2-container--default .select2-selection--single .select2-selection__rendered {
+     color: #fff !important;
+     padding-left: 0px !important;
+   }
+ </style>
+   <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg py-5 navbar-light bg-transparent">
+         <ul class="navbar-nav  ml-auto mr-auto  mb-lg-0" id="vouchers-content">
+            <li class="nav-item">
+               <a class="nav-link <?php if (!isset($_GET['type'])) {
+                  echo 'active';
+               } ?>" aria-current="page" href="dashboard.php">All transactions</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link <?php if (isset($_GET['type'])) {
+                  echo ($_GET['type'] == 'redemtion_uv') ? 'active' : '';
+               } ?>" href="dashboard.php?type=redemtion_uv">Vouchers</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link <?php if (isset($_GET['type'])) {
+                  echo ($_GET['type'] == 'buyuv') ? 'active' : '';
+               } ?>" href="dashboard.php?type=buyuv">Buy UV</a>
+            </li>
+            <!--<li class="nav-item">
+               <a class="nav-link <?php if (isset($_GET['type'])) {
+                  echo ($_GET['type'] == 'buyus') ? 'active' : '';
+               } ?>" href="link.php?type=buyus">Link</a>
+            </li>  -->
+
+            <li class="nav-item">
+               <div class="dropdown">
+                  <a class="nav-link dropdown-toggle <?php if (isset($_GET['type'])) {
+                     echo ($_GET['type'] == 'vip') ? 'active' : '';
+                  } ?>" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                     Membership<i class="fa fa-chevron-down ml-1"></i>
+                  </a>
+                  <div class="dropdown-menu">
+                     <a class="dropdown-item" href="dashboard.php?type=all"> All</a>
+                     <a class="dropdown-item" href="dashboard.php?type=users"> Users</a>
+                     <a class="dropdown-item" href="dashboard.php?type=vip"> Vip</a>
+                     <a class="dropdown-item" href="dashboard.php?type=new_direct_prime"> Ad:Prime Pro</a>
+
+                     <a class="dropdown-item" href="dashboard.php?type=new_direct_fintech"> FinTech Capitalist </a>
+
+
+                  </div>
+               </div>
+            </li>
+
+
+            <!--<li class="nav-item">
+               <a class="nav-link <?php if (isset($_GET['type'])) {
+                  echo ($_GET['type'] == 'commission') ? 'active' : '';
+               } ?>" href="dashboard.php?type=commission"> Bonus</a>
+            </li>  -->
+            <li class="nav-item">
+               <div class="dropdown">
+                  <a class="nav-link dropdown-toggle <?php
+                  $SwapArray = array('adtt_swapped_adtt_all', 'adtt_swapped_adtt', 'uv_swapped_uv', 'adtt_it_swapped_adtt');
+                  if (isset($_GET['type'])) {
+                     echo (in_array($_GET['type'], $SwapArray)) ? 'active' : '';
+                  } ?>" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                     More<i class="fa fa-chevron-down ml-1"></i>
+                  </a>
+                  <div class="dropdown-menu">
+                     <a class="dropdown-item" href="dashboard.php?type=adtt_swapped_adtt_all"> All</a>
+                     <a class="dropdown-item" href="dashboard.php?type=adtt_it_swapped_adtt"> ADTT-CH to UV-SWISS</a>
+                     <a class="dropdown-item" href="dashboard.php?type=adtt_it_swapped_adtt"> ADTT-IT to UV</a>
+                     <a class="dropdown-item" href="dashboard.php?type=adtt_it_swapped_adtt"> ADTT-US to UV-USA</a>
+                     <a class="dropdown-item" href="dashboard.php?type=adtt_it_swapped_adtt"> ADTT-AT to UV</a>
+                     <a class="dropdown-item" href="dashboard.php?type=adtt_it_swapped_adtt"> ADTT-DE to UV</a>
+                     <a class="dropdown-item" href="dashboard.php?type=adtt_swapped_adtt"> ADTT to UV</a>
+                     <a class="dropdown-item" href="dashboard.php?type=uv_swapped_uv"> UV to ADTT</a>
+                     <a class="dropdown-item" href="dashboard.php?type=adtt_it_swapped_adtt"> ADTT-IN to UV</a>
+
+                  </div>
+               </div>
+            </li>
+            <!--<li class="nav-item">
+               <a class="nav-link <?php if (isset($_GET['type'])) {
+                  echo ($_GET['type'] == 'advertising') ? 'active' : '';
+               } ?>" href="dashboard.php?type=advertising">Advertising</a>
+            </li>  -->
+
+         </ul>
+         <form class="d-flex search-filter" method="get" action="user-wallet.php">
+            <input class="form-control me-2" type="searchkey" name="searchkey" placeholder="Type Wallet Address"
+               aria-label="Search">
+            <button class="btn" type="submit"><img src="img/icon-search.svg"></button>
+         </form>
+      </nav>
+      <div class="block bg-white">
+         <div class="row">
+            <div class="col-md-12">
+               <div class="main-table table-responsive">
+                  <table class="table bx-table" cellspacing="0">
+                     <thead class='main-head'>
+                           <tr>
+                              <th>Method</th>
+                              <th style="text-align:right;padding-right:28px">Value</th>
+                              <th>Additional info:</th>
+                              <th style="text-align:center">Market</th>
+                              <th style="text-align:center">Date</th>
+                              <th style="text-align:center">Transaction id:</th>
+                              <th style="text-align:center">User</th>
+                              <th>Membership</th>
+                              <th style="text-align:center">UV </th>
+                              <th style="text-align:center;color:black;">Payback </th>
+                              <th style="text-align:center">Token Bonus </th>
+                              <th>Details</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                  </div>
+                        <tr>
+                              <td colspan="2">
+                                 <div class="bx-container">
+                                    <img src="img/method1.svg">
+                                    <h5>VIP</h6>
+                                 </div>
+                              </td>
+                              <td class="text-blue"><span
+                                    class="font-weight-bold"> €50UV + 5
+                                       </span></td>
+                                                   <td class="text-blue">
+                                                      <div class="d-flex align-items-center justify-content-start"><a href="transaction.php"><img
+                                                               src="img/giftbox.svg" class="mr-2"></a><span
+                                                            class="font-weight-bold">In ADTT</span> </div>
+                                                   </td>
+                           <td style="text-align:center" class="Imagecountry"><img src='{$imageCountry}' style='width:30px;'>";
+                           </td>
+                           <td style="text-align:center">2026-01-01</td>
+                           <td style="text-align:center"><a href=""
+                                 class="text-decoration-underline">ryrt****fjfj
+                           </td>
+                           <td style="text-align:center"><a class="text-decoration-underline"
+                                 href="">tyty****yty</a>
+                           </td>
+                           <td><a class="text-align:center"></td>
+                           <td style="text-align:center"><span
+                                 class="<?php if ($uvList == '-') { ?>text-danger <?php } else { ?>text-success<?php } ?>" <?php if ($uvList != '-') { ?> style="color:black !important" <?php } ?>><?php echo $uvList ?><?php echo $currecy . ' ' . number_format($uvGet, 2); ?> UV</span></td>
+                           <td style="text-align:center"><span class="text-success" style="color:green !important">
+                                 <?php echo $getDetailsVoucher['amount'] ?? '0.00'; ?>
+                                 <?php echo strtoupper(str_replace(array('uv-swiss','uv-usa','eur-usa','uv'),array('CHF','$','$','EUR'),$getDetailsVoucher['adtt_currency']) ?? 'UV'); ?>
+                              </span>
+                           </td>
+                           <td style="text-align:center; color:blue; class=""><span class=" <?php if ($adttList == '-') { ?>text-danger <?php } else { ?>text-success<?php } ?>" style="color:blue !important">
+                              <?php
+                              $arrayMethod = array('new_direct_prime');
+                              if ($voucherFlag == 1) {
+                                 echo $getDetailsAdttVoucher['adtt_amount'] ?? '';
+                                 echo '&nbsp;' . strtoupper($getDetailsAdttVoucher['adtt_currency'] ?? '');
+                              } else if ($data['transaction_method'] != 'new_direct_prime') {
+                                 echo $adttList ?>             <?php echo $adttGet; ?>
+                                 <?php if (!empty($getOrderDetailsList['adtt_name'])) {
+                                    echo strtoupper($getOrderDetailsList['adtt_name']);
+                                 } else {
+                                    if ($data['transaction_method'] == 'adtt_swapped_adtt_it') {
+                                       echo strtoupper($data['transaction_table']);
+                                    } else {
+                                       echo 'ADTT';
+                                    }
+                                 } ?>
+                              <?php } else if ($data['transaction_method'] == 'new_direct_fintech') {
+                                 echo $getOrderDetailsList['adtt_get'] . '  ' . strtoupper($getOrderDetailsList['adtt_name']);
+                              } else if ($data['transaction_method'] == 'ad_prime_trail') {
+                                 echo $getOrderDetailsList['adtt_get'] . ' ' . strtoupper($getOrderDetailsList['adtt_name']);
+                              } else {
+
+
+
+
+                                 echo $getOrderDetailsList['adtt_get'] . ' ' . strtoupper($getOrderDetailsList['adtt_name']);
+                              } ?></span>
+                           </td>
+                           <td><a href="transaction.php?sid=<?php echo $data['id'] ?>"><img src="img/more-right.png"
+                                    height="40px"></a></td>
+                        </tr>
+                        <?php
+
+                     }
+                  }
+                        }
+                        ?>
+               </tbody>
+               </table>
+            </div>
+         </div>
+      </div>
+      <div class="row mt-3">
+         <div class="col-md-12">
+            <nav aria-label="Page navigation example" class="pagination-container">
+               <ul class="pagination pagination-entries">
+                  <li class="page-item">
+                     <span>Show</span>
+                  </li>
+                  <li class="page-item">
+                     <form method="get" id="searchForm">
+                        <input type="hidden" name="type" value="<?php if (isset($_GET['type'])) {
+                           echo $_GET['type'];
+                        } ?>">
+                        <input type="hidden" name="page" value="<?php if (isset($_GET['page'])) {
+                           echo $_GET['page'];
+                        } ?>">
+                        <input id="countrydata" type="hidden" name="countrydata" value="<?php if (isset($_GET['country'])) {
+                           echo $_GET['country'];
+                        } ?>">
+                        <select name="per_page" id="pagenumber" onchange="this.form.submit()">
+                           <option value="10" <?php echo ($results_per_page == 10) ? 'selected' : ''; ?>>10</option>
+                           <option value="20" <?php echo ($results_per_page == 20) ? 'selected' : ''; ?>>20</option>
+                           <option value="50" <?php echo ($results_per_page == 50) ? 'selected' : ''; ?>>50</option>
+                           <option value="100" <?php echo ($results_per_page == 100) ? 'selected' : ''; ?>>100</option>
+                        </select>
+                     </form>
+                     <!-- <a class="page-link" href="#">100</a>-->
+                  </li>
+                  <li class="page-item">
+                     <span>entries</span>
+                  </li>
+               </ul>
+               <ul class="pagination pagination-page">
+                  <li class="page-item">
+                     <a class="page-link"
+                        href="<?php if ($pageNumber <= 1) {
+                           echo '#';
+                        } else { ?>dashboard.php?type=<?php echo $type ?>&countrydata=<?php echo $countryData ?>&page=1&per_page=<?php echo $results_per_page ?> <?php } ?>"
+                        tabindex="-1" aria-disabled="true"><span class="material-symbols-outlined">
+                           first_page
+                        </span></a>
+                  </li>
+                  <li class="page-item">
+                     <a class="page-link"
+                        href="dashboard.php?page=<?php echo ($pageNumber > 1) ? $pageNumber - 1 : $pageNumber ?>&type=<?php echo $type ?>&per_page=<?php echo $results_per_page ?>&countrydata=<?php echo $countryData ?>"
+                        tabindex="-1" aria-disabled="true">
+                        <span class="material-symbols-outlined">
+                           keyboard_arrow_left
+                        </span></a>
+                  </li>
+                  <li class="page-item">
+                     Page <?php echo $pageNumber ?> of <?php echo $number_of_page ?>
+                  </li>
+                  <li class="page-item">
+                     <a class="page-link"
+                        href="dashboard.php?page=<?php echo $pageNumber + 1 ?>&type=<?php echo $type ?>&per_page=<?php echo $results_per_page ?>&countrydata=<?php echo $countryData ?>"
+                        tabindex="-1" aria-disabled="true"><span class="material-symbols-outlined">
+                           keyboard_arrow_right
+                        </span></a>
+                  </li>
+                  <li class="page-item">
+                     <a class="page-link"
+                        href="dashboard.php<?php if ($pageNumber >= $number_of_page) {
+                           echo '#';
+                        } else {
+                           echo "?page=" . $number_of_page;
+                        } ?>&type=<?php echo $type ?>&per_page=<?php echo $results_per_page ?>&countrydata=<?php echo $countryData ?>"><span
+                           class="material-symbols-outlined">
+                           last_page
+                        </span></a>
+                  </li>
+               </ul>
+            </nav>
+         </div>
+
+      </div>
+   </div>
+   <div class="container-fluid">
+   </div>
+   <?php include("common/footer.php"); ?>
+</body>
+
+</html>
+<script>
+   $(document).ready(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+   });
+</script>
+<script>
+   $(".custom-select").each(function () {
+      var classes = $(this).attr("class"),
+         id = $(this).attr("id"),
+         name = $(this).attr("name");
+      var template = '<div class="' + classes + '">';
+      template += '<span class="custom-select-trigger">' + $(this).attr("placeholder") + '</span>';
+      template += '<div class="custom-options">';
+      $(this).find("option").each(function () {
+         template += '<span class="custom-option ' + $(this).attr("class") + '" data-value="' + $(this).attr("value") + '">' + $(this).html() + '</span>';
+      });
+      template += '</div></div>';
+
+      $(this).wrap('<div class="custom-select-wrapper"></div>');
+      $(this).hide();
+      $(this).after(template);
+   });
+   $(".custom-option:first-of-type").hover(function () {
+      $(this).parents(".custom-options").addClass("option-hover");
+   }, function () {
+      $(this).parents(".custom-options").removeClass("option-hover");
+   });
+   $(".custom-select-trigger").on("click", function () {
+      $('html').one('click', function () {
+         $(".custom-select").removeClass("opened");
+      });
+      $(this).parents(".custom-select").toggleClass("opened");
+      event.stopPropagation();
+   });
+   $(".custom-option").on("click", function () {
+      $(this).parents(".custom-select-wrapper").find("select").val($(this).data("value"));
+      $(this).parents(".custom-options").find(".custom-option").removeClass("selection");
+      $(this).addClass("selection");
+      $(this).parents(".custom-select").removeClass("opened");
+      $(this).parents(".custom-select").find(".custom-select-trigger").text($(this).text());
+   });
+</script>

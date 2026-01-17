@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>7C76C8AD-75C7-487B-91FC-819472A421B9</title>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#000000" stop-opacity="0.54819814" offset="0%"></stop>
+            <stop stop-color="#000000" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Analytics" transform="translate(-46.000000, -411.000000)">
+            <g id="Group-29-Copy-3" transform="translate(46.000000, 411.000000)">
+                <circle id="Oval-Copy-2" fill="url(#linearGradient-1)" cx="23" cy="23" r="23"></circle>
+                <g id="Group-14" transform="translate(9.200000, 9.200000)" fill="#FFFFFF">
+                    <polygon id="Fill-4" points="0 22.9990659 6.99041852 22.9990659 11.9595143 11.8795029 8.50647392 4.59981317"></polygon>
+                    <polygon id="Fill-6" points="9.5676114 0 19.7770307 22.9990659 26.3109314 22.9990659 16.101512 0"></polygon>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
