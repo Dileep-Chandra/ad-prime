@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Ad:Prime Scan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            padding: 20px 40px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo-text h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* User Profile Section */
+        .user-profile-section {
+            background: #fff;
+            margin: 30px 40px;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            cursor: pointer;
+            margin-bottom: 25px;
+            padding: 8px 0;
+        }
+
+        .back-button:hover {
+            color: #0066cc;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #e3f2fd, #90caf9);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            flex-shrink: 0;
+        }
+
+        .profile-info {
+            flex: 1;
+        }
+
+        .user-id-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .user-id-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .user-id-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000;
+        }
+
+        .wallet-badges {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .wallet-badge {
+            padding: 6px 14px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .profile-stats {
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .stat-value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .progress-bar-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-bar {
+            width: 120px;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00d4ff, #0099ff);
+            border-radius: 10px;
+            transition: width 0.3s;
+        }
+
+        .progress-percentage {
+            font-size: 14px;
+            font-weight: 600;
+            color: #0066cc;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            background: #fff;
+            padding: 0 40px;
+            display: flex;
+            gap: 30px;
+            border-bottom: 2px solid #e0e0e0;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-tabs-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-tab {
+            padding: 16px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-tab.active {
+            color: #000;
+            border-bottom-color: #0066cc;
+        }
+
+        .nav-tab:hover {
+            color: #000;
+        }
+
+        /* Search Bar */
+        .search-section {
+            background: transparent;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #f5f5f5;
+            border-radius: 25px;
+            padding: 10px 20px;
+            width: 350px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .search-box input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 100%;
+            font-size: 13px;
+            color: #999;
+        }
+
+        .search-box input::placeholder {
+            color: #999;
+            font-style: italic;
+        }
+
+        .search-box button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 30px 40px;
+        }
+
+        /* Table */
+        .table-container {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #fafafa;
+        }
+
+        th {
+            padding: 16px 20px;
+            text-align: left;
+            font-size: 11px;
+            font-weight: 600;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 18px 20px;
+            border-bottom: 1px solid #f5f5f5;
+            font-size: 13px;
+            vertical-align: middle;
+        }
+
+        tbody tr:hover {
+            background: #fafafa;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Method Column */
+        .method-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .method-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .icon-gift {
+            background: linear-gradient(135deg, #e3f2fd, #90caf9);
+            color: #1976d2;
+        }
+
+        .icon-receipt {
+            background: linear-gradient(135deg, #fff3e0, #ffcc80);
+            color: #f57c00;
+        }
+
+        .icon-arrow {
+            background: linear-gradient(135deg, #f3e5f5, #ce93d8);
+            color: #7b1fa2;
+        }
+
+        .icon-card {
+            background: linear-gradient(135deg, #e8f5e9, #a5d6a7);
+            color: #388e3c;
+        }
+
+        .icon-star {
+            background: linear-gradient(135deg, #fce4ec, #f48fb1);
+            color: #c2185b;
+        }
+
+        .icon-blue {
+            background: linear-gradient(135deg, #0066cc, #0052a3);
+            color: #fff;
+        }
+
+        .icon-ticket {
+            background: linear-gradient(135deg, #e3f2fd, #90caf9);
+            color: #1976d2;
+        }
+
+        .icon-promo {
+            background: linear-gradient(135deg, #fff3e0, #ffcc80);
+            color: #f57c00;
+        }
+
+        .method-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .method-label {
+            font-weight: 600;
+            color: #000;
+            font-size: 13px;
+        }
+
+        .method-sublabel {
+            font-size: 11px;
+            color: #888;
+        }
+
+        /* Value Column */
+        .value-amount {
+            font-weight: 600;
+            color: #000;
+            font-size: 14px;
+        }
+
+        /* Additional Info */
+        .additional-info {
+            font-size: 12px;
+            color: #0066cc;
+            font-weight: 500;
+        }
+
+        /* Market Icon */
+        .market-icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #ff4444;
+            color: white;
+            font-size: 10px;
+        }
+
+        /* Date */
+        .date-cell {
+            color: #666;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        /* Transaction ID */
+        .transaction-id {
+            color: #0066cc;
+            font-size: 12px;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Credits */
+        .credits-positive {
+            color: #2e7d32;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* Primes */
+        .primes-value {
+            color: #0066cc;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        /* Details Button */
+        .details-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #0066cc;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .details-btn:hover {
+            background: #0052a3;
+            transform: scale(1.05);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #fff;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .pagination-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .pagination-left select {
+            padding: 6px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+            background: white;
+        }
+
+        .pagination-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .page-btn {
+            width: 32px;
+            height: 32px;
+            border: 1px solid #ddd;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            color: #666;
+        }
+
+        .page-btn:hover {
+            background: #f5f5f5;
+            border-color: #0066cc;
+            color: #0066cc;
+        }
+
+        .page-info {
+            font-size: 13px;
+            color: #666;
+            padding: 0 15px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #888;
+            font-size: 12px;
+            background: #fff;
+            margin-top: 20px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .user-profile-section {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .profile-header {
+                flex-direction: column;
+            }
+
+            .profile-stats {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .nav-tabs {
+                padding: 0 20px;
+                overflow-x: auto;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            table {
+                min-width: 1200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-section">
+            <img src="img/main-logo.png" alt="" style="width: 60px; height: 60px;">
+             
+            <div class="logo-text">
+                <h1>Ad:Prime Scan</h1>
+            </div>
+        </div>
+        <div class="user-info">
+            <span class="user-name">Ma2E...55MIM, Capitalist</span>
+            <button class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- User Profile Section -->
+    <div class="user-profile-section">
+        <button class="back-button">
+            <i class="fas fa-arrow-left"></i>
+            Back
+        </button>
+
+        <div class="profile-header">
+                <img src="img/profilelogo.png" alt="User Avatar" style="width: 60px; height: 100px;">
+            <div class="profile-info">
+                <div class="user-id-section">
+                    <span class="user-id-label">User ID:</span>
+                    <span class="user-id-value">843729875</span>
+                    <div class="wallet-badges">
+                        <span class="wallet-badge">User Wallet: Ma2E...55MIM</span>
+                        <span class="wallet-badge">User Wallet: Capitalist</span>
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="progress-bar-container">
+                            <span class="stat-label">Shopping Profile building:</span>
+                            <!-- <div class="progress-bar">
+                                <div class="progress-fill" style="width: 46.25%"></div>
+                            </div> -->
+                            <span class="progress-percentage">46.25%</span>
+                        </div>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-label">Balance:</span>
+                        <span class="stat-value">Primes-CH: 0.98712873</span>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-label">Credits:</span>
+                        <span class="stat-value">102.20 CHF</span>
+                    </div>
+
+                    <div class="stat-item">
+                        <span class="stat-label">UV:</span>
+                        <span class="stat-value">102.20 CHF</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Tabs & Search -->
+    <div class="nav-tabs">
+        <div class="nav-tabs-container">
+            <div class="nav-tab active">All transactions</div>
+            <div class="nav-tab">Promotions</div>
+            <div class="nav-tab">Credits</div>
+            <div class="nav-tab">Membership</div>
+            <div class="nav-tab">Conversions</div>
+        </div>
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" placeholder="Type Wallet Address, Transaction ID">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Value</th>
+                        <th>Additional Info.</th>
+                        <th>Market</th>
+                        <th>Date</th>
+                        <th>TransactionID</th>
+                        <th>Credits</th>
+                        <th>Primes</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row 1 -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-gift">
+                                    <i class="fas fa-gift"></i>
+                                </div>
+                                <div class="method-info">
+                                    <div class="method-label">Christmas Promotion</div>
+                                    <div class="method-sublabel">Ad:Prime</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 39.00</span></td>
+                        <td><span class="additional-info">+20% Primes-CH</span></td>
+                        <td style="text-align: center;">
+                            <div class="market-icon">⊕</div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 2 -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-receipt">
+                                    <i class="fas fa-receipt"></i>
+                                </div>
+                                <div class="method-info">
+                                    <div class="method-label">Profile Receipt</div>
+                                    <div class="method-sublabel">OTTO's</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 34.00</span></td>
+                        <td><span class="additional-info">12 Products Primes-CH</span></td>
+                        <td style="text-align: center;">
+                            <div class="market-icon">⊕</div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 3 -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-promo">
+                                    <i class="fas fa-receipt"></i>
+                                </div>
+                                <div class="method-info">
+                                    <div class="method-label">Promotions</div>
+                                    <div class="method-sublabel">OTTO's</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 34.00</span></td>
+                        <td><span class="additional-info">7 Products Primes-CH and Credits</span></td>
+                        <td style="text-align: center;">
+                            <div class="market-icon">⊕</div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 4 -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-arrow">
+                                    <i class="fas fa-exchange-alt"></i>
+                                </div>
+                                <div class="method-info">
+                                    <div class="method-label">Conversion</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 500.00</span></td>
+                        <td><span class="additional-info">Primes-CH → Credits</span></td>
+                        <td style="text-align: center;">
+                            <div class="market-icon">⊕</div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 5 -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-card">
+                                    <i class="fas fa-arrow-up"></i>
+                                </div>
+                                <div class="method-info">
+                                    <div class="method-label">Buy Credits</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">€500.00</span></td>
+                        <td></td>
+                        <td style="text-align: center;">
+                            <div class="market-icon">🇮🇹</div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 6 -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-promo">
+                                    <i class="fas fa-receipt"></i>
+                                </div>
+                                <div class="method-info">
+                                    <div class="method-label">Promotion Receipt</div>
+                                    <div class="method-sublabel">MIGROS</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 220.00</span></td>
+                        <td><span class="additional-info">+15% Credits +15% Primes-CH</span></td>
+                        <td style="text-align: center;">
+                            <div class="market-icon">⊕</div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 7 -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-blue">
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <div class="method-info">
+                                    <div class="method-label">Ad:Prime Pro</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 150.00</span></td>
+                        <td><span class="additional-info">CHF 50 Credits CHF 100 Primes-CH</span></td>
+                        <td style="text-align: center;">
+                            <div class="market-icon">⊕</div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 8 -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-ticket">
+                                    <i class="fas fa-ticket-alt"></i>
+                                </div>
+                                <div class="method-info">
+                                    <div class="method-label">Redeemed Voucher</div>
+                                    <div class="method-sublabel">INTERSPAR</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">€100.02</span></td>
+                        <td><span class="additional-info">100% Credits +5% Primes-CH</span></td>
+                        <td style="text-align: center;">
+                            <div class="market-icon">🇮🇹</div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <div class="pagination-left">
+                <span>Show</span>
+                <select>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+                <span>entries</span>
+            </div>
+            <div class="pagination-right">
+                <button class="page-btn"><i class="fas fa-angle-double-left"></i></button>
+                <button class="page-btn"><i class="fas fa-angle-left"></i></button>
+                <span class="page-info">Page 1 of 6</span>
+                <button class="page-btn"><i class="fas fa-angle-right"></i></button>
+                <button class="page-btn"><i class="fas fa-angle-double-right"></i></button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+       
+                
