@@ -1,417 +1,507 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Profile Receipt</title>
 
     <!-- ===== ORIGINAL profile.css (UNCHANGED) ===== -->
     <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Segoe UI", sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
 
-body {
-    background: #f2f3f7;
-    color: #333;
-}
+        body {
+            background: #f2f3f7;
+            color: #333;
+        }
 
-/* Header */
-.header {
-    background: #fff;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ddd;
-}
+         /* Header */
+        .header {
+            background: #fff;
+            padding: 20px 40px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-weight: 600;
-}
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-.logo-icon {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    font-weight: bold;
-}
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
 
-.logo img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
+        .logo-text h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
 
-.user-actions {
-    display: flex;
-    gap: 15px;
-    font-size: 14px;
-}
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-.user-actions a {
-    text-decoration: none;
-    color: #007bff;
-}
+        .user-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
 
-/* Layout */
-.container {
-    margin: 20px auto;
-    padding: 0 15px;
-    overflow-x:hidden
-}
+        .logout-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+        }
+        .logout-btn img {
+            width: 10px;
+            height: 10px;
+            margin-right: 2px;
+        }
+        .logout-btn p {
+            display: inline;
+            font-size: 14px;
+            font-weight: 500;
 
-.back {
-    margin-bottom: 15px;
-    cursor: pointer;
-    color: #555;
-}
+        }
 
-/* Card */
-.card {
-    background: #fff;
-    border-radius: 8px;
-    padding: 20px;
-    margin-bottom: 20px;
-}
+        /* Layout */
+        .container {
+            margin: 20px auto;
+            padding: 0 15px;
+            overflow-x: hidden
+        }
 
-.card-header {
-    display: flex;
-    align-items: center;
-    background: #e9edff;
-    padding: 14px 18px;
-    margin-right:5%;
-    margin-left:5%;
-    margin-bottom:18px;
-    border-radius: 6px;
-}
+        /* Card */
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
 
-.header-left {
-    display: flex;
-    align-items: center;
-    gap:20px;
-}
+        .header-row {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 40px;
+            margin-bottom: 20px;
+        }
 
-.header-img {
-    width: 36px;
-    height: 36px;
-    object-fit: cover;
-    border-radius: 6px;
-}
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 16px;
+            color: #000;
+            cursor: pointer;
+            text-decoration: none;
+            margin-bottom: 20px;
+            background: none;
+            border: none;
+            padding: 30px 40px 0 40px;
+        }
 
-.card-header .title {
-    font-size: 20px;
-    font-weight: 800;
-    color: #1f2a44;
-    margin: 0;
-}
+        .section-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 100%;
+            letter-spacing: 4.59px;
+            text-transform: uppercase;
+            text-align: center;
+            padding-top: 3%;
+        }
 
-.receipt-meta {
-    display: grid;
-    grid-template-columns: auto auto;
-    justify-content: end;
-    column-gap: 22px;
-    row-gap: 4px;
-    font-size: 16px;
-    color: #2f3a5f;
-    white-space: normal;
-    margin-left:20%;
-}
+        .card-header {
+            display: flex;
+            align-items: center;
+            background: #e9edff;
+            padding: 5px 5px;
+            margin-bottom: 18px;
+            border-radius: 6px;
+        }
 
-.accepted-products {
-    text-align: right;
-    font-size: 16px;
-}
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
 
-#merchantAmount {
-    font-weight: 600;
-}
+        .header-img {
+            width: 120px;
+            height: 75px;
+            object-fit: inherit;
+        }
 
-.receipt-meta span:first-child {
-    font-weight: 800;
-}
 
-.details {
-    display: flex;
-    flex-direction: column;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 10px 0;
-}
+        .card-header .title {
+            font-size: 20px;
+            font-weight: 800;
+            color: #1f2a44;
+            margin: 0;
+        }
 
-.detail-section {
-    padding: 8px 0;
-}
+        .receipt-meta {
+            display: grid;
+            grid-template-columns: auto auto;
+            justify-content: end;
+            column-gap: 22px;
+            row-gap: 4px;
+            font-size: 16px;
+            color: #2f3a5f;
+            white-space: normal;
+            margin-left: 20%;
+        }
 
-.detail-section:not(:last-child) {
-    border-bottom: 1px solid #e5e7eb;
-    margin-bottom: 12px;
-    padding-bottom: 14px;
-}
+        .accepted-products {
+            text-align: right;
+            font-size: 16px;
+        }
 
-.details .row {
-    display: grid;
-    grid-template-columns: 240px 1fr;
-    padding: 8px 0;
-    font-size: 14px;
-    align-items: center;
-}
+        #merchantAmount {
+            font-weight: 600;
+        }
 
-.hash {
-    word-break: break-all;
-}
+        .receipt-meta span:first-child {
+            font-weight: 800;
+        }
 
-.status {
-    padding: 4px 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    width:80px;
-}
+        .details {
+            display: flex;
+            flex-direction: column;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 10px 0;
+        }
 
-.success {
-    background: #d4f5e2;
-    color: #1b7a45;
-}
+        .detail-section {
+            padding: 8px 0;
+        }
 
-/* Table */
-.section-title {
-    margin: 20px;
-    margin-top:0px;
-    margin-bottom:25px;
-    font-size: 16px;
-    letter-spacing: 1px;
-    color: #777;
-    display:flex;
-    justify-content:Center;
-}
+        .detail-section:not(:last-child) {
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 12px;
+            padding-bottom: 14px;
+        }
 
-.table-wrapper {
-    overflow-x: auto;
-}
+        .details .row {
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            padding: 10px 0;
+            font-size: 16px;
+            align-items: center;
+        }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-}
+        .hash {
+            word-break: break-all;
+        }
 
-th, td {
-    padding: 12px;
-    border-bottom: 1px solid #eee;
-    text-align: left;
-}
+        .status {
+            padding: 4px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            width: 80px;
+        }
 
-th {
-    background: #f8f9fc;
-    font-weight: 600;
-}
+        .success {
+            background: #d4f5e2;
+            color: #1b7a45;
+        }
 
-.more {
-    margin-top: 10px;
-    font-size: 13px;
-    color: #777;
-}
+        /* Table */
+        .section-title {
+            margin: 20px;
+            margin-top: 0px;
+            margin-bottom: 25px;
+            font-size: 13px;
+            letter-spacing: 4.59px;
+            color: #545454;
+            display: flex;
+            font-style: poppins;
+            justify-content: Center;
+        }
 
-/* Footer */
-.footer {
-    text-align: center;
-    font-size: 13px;
-    padding: 20px;
-    color: #777;
-}
+        .table-wrapper {
+            overflow-x: auto;
+        }
 
-/* Copy */
-.copy-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 16px;
+        }
 
-.copy-icon {
-    width: 18px;
-    height: 18px;
-    cursor: pointer;
-    opacity: 0.7;
-}
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+
+        th {
+            background: #f8f9fc;
+            font-weight: 600;
+        }
+
+        .more {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            font-size: 13px;
+            padding: 20px;
+            color: #777;
+        }
+
+        /* Copy */
+        .copy-wrapper {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .copy-icon {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            opacity: 0.7;
+            color:#1A1A1A;
+        }
+
+        .timestamp {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .confirmed
+        {
+            font-size: 12px;
+            padding-top: 5px;
+        }
     </style>
 </head>
 
 <body>
-
-<header class="header">
-    <div class="logo">      
-        <div class="logo-icon">
-            <img src="img/main-logo.png" alt="Ad:Prime Logo">
-        </div>
-        <span>Ad:Prime Scan</span>
-    </div>
-    <div class="user-actions">
-        <strong id="username"></strong>
-        <a href="#" class="logout-btn">Logout</a>
-    </div>
-</header>
-
-<main class="container">
-
-<section class="card">
-    <div class="back">← Back
-        <h3 class="section-title">TRANSACTION DETAILS</h3>
-    </div>
-
-    <div class="card-header">
-        <div class="header-left">
-            <img src="img/profilelogo.png" class="header-img">
-            <h2 class="title">Profile Receipt</h2>
-        </div>
-
-        <div class="receipt-meta">
-            <span id="merchantAmount"></span>
-            <span id="receiptId"></span>
-            <div class="accepted-products">
-                <span id="acceptedProducts"></span>
+ <!-- Header -->
+    <div class="header">
+        <div class="logo-section">
+            <img src="img/main-logo.png" alt="" class="logo-icon">
+            <div class="logo-text">
+                <h1>Ad:Prime Scan</h1>
             </div>
         </div>
+        <div class="user-info">
+            <span class="user-name" id="username"> </span>
+            <button class="logout-btn" title="Logout">
+                <img src="img/logout.png" alt="">
+                <p><u>Logout</u></p>
+            </button>
+        </div>
     </div>
 
-    <div class="details">
-        <div class="detail-section">
-            <div class="row"><span>Transaction description</span><strong id="description"></strong></div>
-            <div class="row"><span>Transaction Hash</span><span class="hash" id="txHash"></span></div>
-            <div class="row"><span>Status</span><span class="status success" id="status"></span></div>
-            <div class="row"><span>Block</span><span id="block"></span></div>
-            <div class="row"><span>Timestamp</span><strong id="timestamp"></strong></div>
-            <p id="confirmationTime"></p>
-        </div>
+    <main class="container">
 
-        <div class="detail-section">
-            <div class="row"><span>From</span><strong id="from"></strong></div>
-            <div class="row">
-                <span>To</span>
-                <div class="copy-wrapper">
-                    <strong id="to"></strong>
-                    <i class="copy-icon" onclick="copyToValue()"></i>
+        <section class="card">
+            <div class="header-row">
+                <button class="back-btn">
+                    <span>←</span> Back
+                </button>
+
+                <div class="section-title">TRANSACTION DETAILS</div>
+            </div>
+
+            <div class="card-header">
+                <div class="header-left">
+                    <div class="header-img-div">
+                    <img src="img/profilelogo.png" class="header-img">
+                    </div>
+
+                    <h2 class="title">Profile Receipt</h2>
+                </div>
+
+                <div class="receipt-meta">
+                    <span id="merchantAmount"></span>
+                    <span id="receiptId"></span>
+                    <div class="accepted-products">
+                        <span id="acceptedProducts"></span>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="detail-section">
-            <div class="row"><span>Primes Transferred</span><strong id="primesTransferred"></strong></div>
-            <div class="row"><span>Transaction Fee</span><span id="transactionFee"></span></div>
-        </div>
-    </div>
-</section>
+            <div class="details">
+                <div class="detail-section">
+                    <div class="row"><span>Transaction description</span><strong id="description"></strong></div>
+                    <div class="row"><span>Transaction Hash</span><span class="hash" id="txHash"></span></div>
+                    <div class="row"><span>Status</span><span class="status success" id="status"></span></div>
+                    <div class="row"><span>Block</span><span id="block"></span></div>
+                    <div class="row">
+                        <span>Timestamp</span>
+                        <div class="timestamp">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor">
+                                <circle cx="8" cy="8" r="7" stroke-width="1.5" />
+                                <path d="M8 4 L8 8 L11 10" stroke-width="1.5" stroke-linecap="round" />
+                            </svg>
+                            <span id="timestamp"></span>
+                            <span>|</span>
+                            <span id="timeAgo"></span>
+                            <span class="confirmed" id="confirmed"></span>
+                        </div>
+                    </div>
+                </div>
 
-<section class="card">
-    <h3 class="section-title">PRODUCTS ON PROMOTION</h3>
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>No</th>
-                    <th>Product ID</th>
-                    <th>Product Title</th>
-                    <th>Promotion</th>
-                    <th>Barcode</th>
-                    <th>Category</th>
-                    <th>Credits(50%)</th>
-                    <th>Primes(50%)</th>
-                    <th>Profile building</th>
-                </tr>
-            </thead>
-            <tbody id="productsTableBody"></tbody>
-        </table>
-    </div>
-    <p class="more" id="otherProducts"></p>
-</section>
+                <div class="detail-section">
+                    <div class="row"><span>From</span><strong id="from"></strong></div>
+                    <div class="row">
+                        <span>To</span>
+                        <div class="copy-wrapper">
+                            <span id="to"></span>
+                            <img src="img/copy.png" class="copy-icon">
+                        </div>
+                    </div>
+                </div>
 
-</main>
+                <div class="detail-section">
+                    <div class="row"><span>Primes Transferred</span><strong id="primesTransferred"></strong></div>
+                    <div class="row"><span>Transaction Fee</span><span id="transactionFee"></span></div>
+                </div>
+            </div>
+        </section>
 
-<footer class="footer">
-    Copyright © 2026 Ad:Prime Scan by Blu Vela.
-</footer>
+        <section class="card">
+            <div class="header-row">
+                <h3 class="section-title">PRODUCTS ON PROMOTION</h3>
+            </div>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Product ID</th>
+                            <th>Product Title</th>
+                            <th>Promotion</th>
+                            <th>Barcode</th>
+                            <th>Category</th>
+                            <th>Credits(50%)</th>
+                            <th>Primes(50%)</th>
+                            <th>Profile building</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody"></tbody>
+                </table>
+            </div>
+            <p class="more" id="otherProducts"></p>
+        </section>
 
-<!-- ===== ORIGINAL profile.js (UNCHANGED) ===== -->
-<script>
-// ================= TRANSACTION DATA =================
-const receiptData = {
-    user: "Ma2E_55MIM, Capitalist",
-    merchant: "OTTO’s",
-    amount: "107.60 CHF",
-    receiptId: "635426534",
-    acceptedProducts: 2,
-    description: "Shopping Profile building: 0.50%",
-    txHash: "1fe2dc2363996cbb9c629d9e95627d612234b8371ad28df548e50cb85b0db10",
-    status: "SUCCESS",
-    block: "7703166",
-    timestamp: "Dec-05-2021 08:09:05 AM +UTC | 183 days 22 hrs ago",
-    from: "Ad:Prime Wallet",
-    to: "Ma2E_55MIM",
-    primesTransferred: "0.002342 Primes-CH",
-    transactionFee: "0.002342 Primes-CH"
-};
+    </main>
 
-// ================= PRODUCT LIST =================
-const products = [
-    {
-        productId: "7853485",
-        title: "Bar***",
-        promotion: "22.00%",
-        barcode: "751***",
-        category: "Pasta",
-		credits:"--",
-		primes:"--",
-        profileBuilding: "0.25%"
-    },
-    {
-        productId: "23412234",
-        title: "Dov***",
-        promotion: "33.00%",
-        barcode: "924***",
-        category: "Cosmetics",
-		credits:"--",
-		primes:"--",
-        profileBuilding: "0.25%"
-    }
-];
+    <footer class="footer">
+        Copyright © 2026 Ad:Prime Scan by Blu Vela.
+    </footer>
 
-const otherProductsCount = 6;
+    <!-- ===== ORIGINAL profile.js (UNCHANGED) ===== -->
+    <script>
+        // ================= TRANSACTION DATA =================
+        const receiptData = {
+            user: "Ma2E_55MIM, Capitalist",
+            merchant: "OTTO’s",
+            amount: "107.60 CHF",
+            receiptId: "635426534",
+            acceptedProducts: 2,
+            description: "Shopping Profile building: 0.50%",
+            txHash: "1fe2dc2363996cbb9c629d9e95627d612234b8371ad28df548e50cb85b0db10",
+            status: "SUCCESS",
+            block: "7703166",
+            timestamp: "Dec-05-2021 08:09:05 AM +UTC | 183 days 22 hrs ago",
+            from: "Ad:Prime Wallet",
+            to: "Ma2E_55MIM",
+            primesTransferred: "0.002342 Primes-CH",
+            transactionFee: "0.002342 Primes-CH",
+            timeAgo:"183 days 22 hrs ago",
+            confirmed:"Confirmed within 2 secs"
+        };
 
-// ================= BIND TRANSACTION DATA =================
-document.getElementById("username").innerText = receiptData.user;
-document.getElementById("merchantAmount").innerText =
-    `${receiptData.merchant} ${receiptData.amount}`;
-document.getElementById("receiptId").innerText =
-    `Receipt ID: ${receiptData.receiptId}`;
-document.getElementById("acceptedProducts").innerText =
-    `${receiptData.acceptedProducts} products accepted`;
+        // ================= PRODUCT LIST =================
+        const products = [
+            {
+                productId: "7853485",
+                title: "Bar***",
+                promotion: "22.00%",
+                barcode: "751***",
+                category: "Pasta",
+                credits: "--",
+                primes: "--",
+                profileBuilding: "0.25%"
+            },
+            {
+                productId: "23412234",
+                title: "Dov***",
+                promotion: "33.00%",
+                barcode: "924***",
+                category: "Cosmetics",
+                credits: "--",
+                primes: "--",
+                profileBuilding: "0.25%"
+            }
+        ];
 
-document.getElementById("description").innerText = receiptData.description;
-document.getElementById("txHash").innerText = receiptData.txHash;
-document.getElementById("status").innerText = receiptData.status;
-document.getElementById("block").innerText = receiptData.block;
-document.getElementById("timestamp").innerText = receiptData.timestamp;
-document.getElementById("from").innerText = receiptData.from;
-document.getElementById("to").innerText = receiptData.to;
-document.getElementById("primesTransferred").innerText = receiptData.primesTransferred;
-document.getElementById("transactionFee").innerText = receiptData.transactionFee;
+        const otherProductsCount = 6;
 
-// ================= DYNAMIC TABLE ROWS =================
-const tableBody = document.getElementById("productsTableBody");
+        // ================= BIND TRANSACTION DATA =================
+        document.getElementById("username").innerText = receiptData.user;
+        document.getElementById("merchantAmount").innerText =
+            `${receiptData.merchant} ${receiptData.amount}`;
+        document.getElementById("receiptId").innerText =
+            `Receipt ID: ${receiptData.receiptId}`;
+        document.getElementById("acceptedProducts").innerText =
+            `${receiptData.acceptedProducts} products accepted`;
 
-products.forEach((product, index) => {
-    const row = document.createElement("tr");
+        document.getElementById("description").innerText = receiptData.description;
+        document.getElementById("txHash").innerText = receiptData.txHash;
+        document.getElementById("status").innerText = receiptData.status;
+        document.getElementById("block").innerText = receiptData.block;
+        document.getElementById("timestamp").innerText = receiptData.timestamp;
+        document.getElementById("timeAgo").innerText = receiptData.timeAgo;
+        document.getElementById("confirmed").innerText = receiptData.confirmed;
+        document.getElementById("from").innerText = receiptData.from;
+        document.getElementById("to").innerText = receiptData.to;
+        document.getElementById("primesTransferred").innerText = receiptData.primesTransferred;
+        document.getElementById("transactionFee").innerText = receiptData.transactionFee;
 
-    row.innerHTML = `
+        // ================= DYNAMIC TABLE ROWS =================
+        const tableBody = document.getElementById("productsTableBody");
+
+        products.forEach((product, index) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
         <td>${index + 1}</td>
         <td>${product.productId}</td>
         <td><strong>${product.title}</strong></td>
@@ -423,39 +513,42 @@ products.forEach((product, index) => {
         <td><strong>${product.profileBuilding}</strong></td>
     `;
 
-    tableBody.appendChild(row);
-});
+            tableBody.appendChild(row);
+        });
 
-// ================= OTHER PRODUCTS =================
-document.getElementById("otherProducts").innerText =
-    `+${otherProductsCount} other products on receipt`;
-	
-document.getElementById("from").style.color="blue";
+        // ================= OTHER PRODUCTS =================
+        document.getElementById("otherProducts").innerText =
+            `+${otherProductsCount} other products on receipt`;
 
-document.getElementById("username").style.textDecoration="underline";
-
-
-const confirmationSeconds = 2;
-
-document.getElementById("timestamp").textContent =
-    "Dec-05-2021 08:09:05 AM +UTC";
-
-document.getElementById("confirmationTime").textContent =
-    `Confirmed within ${confirmationSeconds} seconds`;
+        document.getElementById("from").style.color = "#003EFF";
+        document.getElementById("from").style.fontWeight = "400";
 
 
-function copyToValue() {
-    const valueEl = document.getElementById("to");
-    const text = valueEl.textContent;
+        document.getElementById("username").style.textDecoration = "underline";
 
-    navigator.clipboard.writeText(text);
 
-    valueEl.style.color = "#16a34a";
-    setTimeout(() => {
-        valueEl.style.color = "";
-    }, 800);
-}
+        const confirmationSeconds = 2;
 
-</script>
+        document.getElementById("timestamp").textContent =
+            "Dec-05-2021 08:09:05 AM +UTC";
+
+        document.getElementById("confirmationTime").textContent =
+            `Confirmed within ${confirmationSeconds} seconds`;
+
+
+        function copyToValue() {
+            const valueEl = document.getElementById("to");
+            const text = valueEl.textContent;
+
+            navigator.clipboard.writeText(text);
+
+            valueEl.style.color = "#16a34a";
+            setTimeout(() => {
+                valueEl.style.color = "";
+            }, 800);
+        }
+
+    </script>
 </body>
+
 </html>
