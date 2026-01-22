@@ -215,11 +215,10 @@
 
         /* Navigation Tabs */
         .nav-tabs {
-            background: #fff;
-            padding: 0 40px;
+            padding: 10px 40px;
             display: flex;
             gap: 30px;
-            border-bottom: 2px solid #e0e0e0;
+            /* border-bottom: 2px solid #e0e0e0; */
             justify-content: space-between;
             align-items: center;
         }
@@ -230,23 +229,20 @@
         }
 
         .nav-tab {
-            padding: 16px 0;
+            padding: 12px 0;
             font-size: 14px;
             font-weight: 600;
-            color: #666;
+            color: #000;
             cursor: pointer;
             border-bottom: 3px solid transparent;
             transition: all 0.3s;
             position: relative;
+            text-decoration: none;
         }
 
         .nav-tab.active {
             color: #000;
-            border-bottom-color: #0066cc;
-        }
-
-        .nav-tab:hover {
-            color: #000;
+            border-bottom-color: #003EFF;
         }
 
         /* Search Bar */
@@ -260,11 +256,10 @@
         .search-box {
             display: flex;
             align-items: center;
-            background: #f5f5f5;
+            background: #fff;
             border-radius: 25px;
-            padding: 10px 20px;
+            padding: 8px 20px;
             width: 350px;
-            border: 1px solid #e0e0e0;
         }
 
         .search-box input {
@@ -273,27 +268,23 @@
             outline: none;
             width: 100%;
             font-size: 13px;
-            color: #999;
-        }
-
-        .search-box input::placeholder {
-            color: #999;
             font-style: italic;
+            color: #666;
         }
 
         .search-box button {
-            background: none;
+            background: #000;
             border: none;
             cursor: pointer;
-            color: #666;
-            padding: 0;
-            display: flex;
-            align-items: center;
+            color: #fff;
+            border-radius: 20px;
+            padding: 8px 12px;
         }
 
         /* Main Content */
         .main-content {
             padding: 30px 40px;
+            flex: 1;
         }
 
         /* Table */
@@ -310,23 +301,20 @@
         }
 
         thead {
-            background: #fafafa;
+            background: #fff;
         }
 
         th {
-            padding: 16px 20px;
+            padding: 15px 20px;
             text-align: left;
-            font-size: 11px;
-            font-weight: 600;
-            color: #888;
-            text-transform: uppercase;
+            font-size: 12px;
+            color: #545454;
             letter-spacing: 0.5px;
-            white-space: nowrap;
         }
 
         td {
-            padding: 18px 20px;
-            border-bottom: 1px solid #f5f5f5;
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
             font-size: 13px;
             vertical-align: middle;
         }
@@ -335,77 +323,37 @@
             background: #fafafa;
         }
 
-        tbody tr:last-child td {
-            border-bottom: none;
+        .combined-cell {
+            background: #1976d2;
+            color: #fff;
         }
 
         /* Method Column */
         .method-cell {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 24px;
         }
 
         .method-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 8px;
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
+            font-size: 18px;
         }
 
-        .icon-gift {
-            background: linear-gradient(135deg, #e3f2fd, #90caf9);
-            color: #1976d2;
-        }
-
-        .icon-receipt {
-            background: linear-gradient(135deg, #fff3e0, #ffcc80);
-            color: #f57c00;
-        }
-
-        .icon-arrow {
-            background: linear-gradient(135deg, #f3e5f5, #ce93d8);
-            color: #7b1fa2;
-        }
-
-        .icon-card {
-            background: linear-gradient(135deg, #e8f5e9, #a5d6a7);
-            color: #388e3c;
-        }
-
-        .icon-star {
-            background: linear-gradient(135deg, #fce4ec, #f48fb1);
-            color: #c2185b;
-        }
-
-        .icon-blue {
-            background: linear-gradient(135deg, #0066cc, #0052a3);
-            color: #fff;
-        }
-
-        .icon-ticket {
-            background: linear-gradient(135deg, #e3f2fd, #90caf9);
-            color: #1976d2;
-        }
-
-        .icon-promo {
-            background: linear-gradient(135deg, #fff3e0, #ffcc80);
-            color: #f57c00;
-        }
-
-        .method-info {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
+        .method-icon img {
+            width: 64px;
+            height: 36px;
+            padding-left: 10px;
         }
 
         .method-label {
             font-weight: 600;
-            color: #000;
+            color: #333;
             font-size: 13px;
         }
 
@@ -416,9 +364,8 @@
 
         /* Value Column */
         .value-amount {
-            font-weight: 600;
-            color: #000;
-            font-size: 14px;
+            color: #333;
+            font-size: 12px;
         }
 
         /* Additional Info */
@@ -428,44 +375,66 @@
             font-weight: 500;
         }
 
-        /* Market Icon */
-        .market-icon {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #ff4444;
-            color: white;
-            font-size: 10px;
+        /* Market Flag */
+        .market-flag {
+            width: 28px;
+            height: 20px;
+            border-radius: 3px;
+            object-fit: cover;
         }
 
         /* Date */
         .date-cell {
             color: #666;
             font-size: 12px;
-            white-space: nowrap;
         }
 
         /* Transaction ID */
         .transaction-id {
-            color: #0066cc;
+            text-decoration: underline;
+            cursor: pointer;
             font-size: 12px;
-            font-family: 'Courier New', monospace;
+        }
+
+        /* User */
+        .user-cell {
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* Membership Badge */
+        .membership-badge {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            text-decoration: underline;
+            display: inline-block;
+        }
+
+        .badge-pro {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .badge-vip {
+            background: #fff9c4;
+            color: #f57f17;
+        }
+
+        .badge-bronze {
+            background: #ffebee;
+            color: #c62828;
         }
 
         /* Credits */
         .credits-positive {
-            color: #2e7d32;
-            font-weight: 600;
+            color: #003EFF;
             font-size: 13px;
         }
 
         /* Primes */
         .primes-value {
-            color: #0066cc;
-            font-weight: 600;
+            color: #003EFF;
             font-size: 13px;
         }
 
@@ -474,7 +443,7 @@
             width: 36px;
             height: 36px;
             border-radius: 50%;
-            background: #0066cc;
+            background: #003EFF;
             color: white;
             border: none;
             cursor: pointer;
@@ -486,7 +455,7 @@
 
         .details-btn:hover {
             background: #0052a3;
-            transform: scale(1.05);
+            transform: scale(1.1);
         }
 
         /* Pagination */
@@ -509,54 +478,91 @@
         }
 
         .pagination-left select {
-            padding: 6px 12px;
+            padding: 5px 10px;
             border: 1px solid #ddd;
-            border-radius: 6px;
+            border-radius: 4px;
             font-size: 13px;
             cursor: pointer;
-            background: white;
         }
 
         .pagination-right {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
         .page-btn {
             width: 32px;
             height: 32px;
-            border: 1px solid #ddd;
-            background: white;
-            border-radius: 6px;
+            border: none;
+            background: #f5f5f5;
+            border-radius: 4px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
-            color: #666;
+            transition: all 0.3s;
         }
 
         .page-btn:hover {
-            background: #f5f5f5;
-            border-color: #0066cc;
-            color: #0066cc;
+            background: #e0e0e0;
         }
 
         .page-info {
             font-size: 13px;
             color: #666;
-            padding: 0 15px;
+            padding: 0 10px;
+        }
+
+        /* Filters Section */
+        .filters-section {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            max-width: 600px;
+        }
+
+        .filter-group {
+            flex: 1;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-select:hover {
+            border-color: #999;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
         }
 
         /* Footer */
-        .footer {
+        .login-footer {
             text-align: center;
-            padding: 20px;
-            color: #888;
+            padding: 20px 40px;
+            background: #f5f5f5;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .login-footer p {
+            color: #666;
             font-size: 12px;
-            background: #fff;
-            margin-top: 20px;
+            margin: 0;
         }
 
         /* Responsive */
@@ -566,23 +572,13 @@
                 gap: 15px;
             }
 
-            .user-profile-section {
-                margin: 20px;
-                padding: 20px;
-            }
-
-            .profile-header {
-                flex-direction: column;
-            }
-
-            .profile-stats {
-                flex-direction: column;
-                gap: 15px;
-                align-items: flex-start;
+            .currency-bar {
+                padding: 10px 20px;
             }
 
             .nav-tabs {
-                padding: 0 20px;
+                padding: 15px 20px 0;
+                gap: 15px;
                 overflow-x: auto;
             }
 
@@ -596,6 +592,25 @@
 
             table {
                 min-width: 1200px;
+            }
+        }
+        @media (max-width: 480px) {
+            .logo-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .logo-text h1 {
+                font-size: 24px;
+            }
+
+            .login-footer {
+                bottom: 20px;
+            }
+
+            .login-footer p {
+                font-size: 10px;
+                padding: 0 20px;
             }
         }
     </style>
@@ -671,11 +686,11 @@
     <!-- Navigation Tabs & Search -->
     <div class="nav-tabs">
         <div class="nav-tabs-container">
-            <div class="nav-tab active">All transactions</div>
-            <div class="nav-tab">Promotions</div>
-            <div class="nav-tab">Credits</div>
-            <div class="nav-tab">Membership</div>
-            <div class="nav-tab">Conversions</div>
+            <a href="" class="nav-tab active">All transactions</a>
+            <a href="promotion.html" class="nav-tab">Promotions</a>
+            <a href="credits.html" class="nav-tab">Credits</a>
+            <a href="membership.html" class="nav-tab">Membership</a>
+            <a href="conversions.html" class="nav-tab">Conversions</a>
         </div>
         <div class="search-section">
             <div class="search-box">
@@ -691,38 +706,40 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Method</th>
+                        <th>Products</th>
                         <th>Value</th>
                         <th>Additional Info.</th>
                         <th>Market</th>
                         <th>Date</th>
                         <th>TransactionID</th>
+                        <th>User</th>
+                        <th>Membership</th>
                         <th>Credits</th>
                         <th>Primes</th>
                         <th>Details</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- Row 1 -->
-                    <tr>
+                   <!-- Row 1 -->
+                   <tr>
                         <td>
                             <div class="method-cell">
-                                <div class="method-icon icon-gift">
-                                    <i class="fas fa-gift"></i>
+                                <div class="method-icon icon-receipt">
+                                    <img src="img/christmaspromotion.png" alt="">
                                 </div>
-                                <div class="method-info">
-                                    <div class="method-label">Christmas Promotion</div>
+                                <div>
+                                    <div class="method-label">Christmas Promotion </div>
                                     <div class="method-sublabel">Ad:Prime</div>
                                 </div>
                             </div>
                         </td>
-                        <td><span class="value-amount">CHF 39.00</span></td>
-                        <td><span class="additional-info">+20% Primes-CH</span></td>
-                        <td style="text-align: center;">
-                            <div class="market-icon">⊕</div>
-                        </td>
+                        <td><span class="value-amount">CHF 34.00</span></td> 
+                        <td><span class="additional-info">+5% Primes-CH</span></td>
+                        <td style="text-align: center;"><img src="img/plus.png" height="12" style="border-radius: 100%;"></td>
                         <td class="date-cell">2022-07-22 08:13:24</td>
                         <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
                         <td><span class="credits-positive">+ CHF 6.00</span></td>
                         <td><span class="primes-value">+0.009320 Primes-CH</span></td>
                         <td>
@@ -732,27 +749,28 @@
                         </td>
                     </tr>
 
+
                     <!-- Row 2 -->
                     <tr>
                         <td>
                             <div class="method-cell">
                                 <div class="method-icon icon-receipt">
-                                    <i class="fas fa-receipt"></i>
+                                    <img src="img/christmaspromotion.png" alt="">
                                 </div>
-                                <div class="method-info">
-                                    <div class="method-label">Profile Receipt</div>
-                                    <div class="method-sublabel">OTTO's</div>
+                                <div>
+                                    <div class="method-label">Christmas Promotion </div>
+                                    <div class="method-sublabel">Ad:Prime</div>
                                 </div>
                             </div>
                         </td>
-                        <td><span class="value-amount">CHF 34.00</span></td>
-                        <td><span class="additional-info">12 Products Primes-CH</span></td>
-                        <td style="text-align: center;">
-                            <div class="market-icon">⊕</div>
-                        </td>
+                        <td><span class="value-amount">CHF 34.00</span></td> 
+                        <td><span class="additional-info">100% Credits</span></td>
+                        <td style="text-align: center;"><img src="img/ireland-market.png" height="12" style="border-radius: 100%;"></td>
                         <td class="date-cell">2022-07-22 08:13:24</td>
                         <td><span class="transaction-id">037f***28924</span></td>
-                        <td></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
                         <td><span class="primes-value">+0.009320 Primes-CH</span></td>
                         <td>
                             <button class="details-btn">
@@ -761,26 +779,27 @@
                         </td>
                     </tr>
 
+
                     <!-- Row 3 -->
                     <tr>
                         <td>
                             <div class="method-cell">
-                                <div class="method-icon icon-promo">
-                                    <i class="fas fa-receipt"></i>
+                                <div class="method-icon icon-receipt">
+                                    <img src="img/christmaspromotion.png" alt="">
                                 </div>
-                                <div class="method-info">
-                                    <div class="method-label">Promotions</div>
-                                    <div class="method-sublabel">OTTO's</div>
+                                <div>
+                                    <div class="method-label">Christmas Promotion </div>
+                                    <div class="method-sublabel">Ad:Prime</div>
                                 </div>
                             </div>
                         </td>
-                        <td><span class="value-amount">CHF 34.00</span></td>
-                        <td><span class="additional-info">7 Products Primes-CH and Credits</span></td>
-                        <td style="text-align: center;">
-                            <div class="market-icon">⊕</div>
-                        </td>
+                        <td><span class="value-amount">CHF 34.00</span></td> 
+                        <td><span class="additional-info"></span></td>
+                        <td style="text-align: center;"><img src="img/plus.png" height="12" style="border-radius: 100%;"></td>
                         <td class="date-cell">2022-07-22 08:13:24</td>
                         <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
                         <td><span class="credits-positive">+ CHF 6.00</span></td>
                         <td><span class="primes-value">+0.009320 Primes-CH</span></td>
                         <td>
@@ -794,22 +813,23 @@
                     <tr>
                         <td>
                             <div class="method-cell">
-                                <div class="method-icon icon-arrow">
-                                    <i class="fas fa-exchange-alt"></i>
+                                <div class="method-icon icon-receipt">
+                                    <img src="img/profilelogo.png" alt="">
                                 </div>
-                                <div class="method-info">
-                                    <div class="method-label">Conversion</div>
+                                <div>
+                                    <div class="method-label">Profile Receipt</div>
+                                    <div class="method-sublabel">OTTO's</div>
                                 </div>
                             </div>
                         </td>
-                        <td><span class="value-amount">CHF 500.00</span></td>
-                        <td><span class="additional-info">Primes-CH → Credits</span></td>
-                        <td style="text-align: center;">
-                            <div class="market-icon">⊕</div>
-                        </td>
+                        <td><span class="value-amount">CHF 34.00</span></td>
+                        <td><span class="additional-info">12 Products Primes-CH</span></td>
+                        <td style="text-align: center;"><img src="img/plus.png" height="12"></td>
                         <td class="date-cell">2022-07-22 08:13:24</td>
                         <td><span class="transaction-id">037f***28924</span></td>
-                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
+                        <td></td>
                         <td><span class="primes-value">+0.009320 Primes-CH</span></td>
                         <td>
                             <button class="details-btn">
@@ -822,21 +842,22 @@
                     <tr>
                         <td>
                             <div class="method-cell">
-                                <div class="method-icon icon-card">
-                                    <i class="fas fa-arrow-up"></i>
+                                <div class="method-icon icon-receipt">
+                                    <img src="img/givinghand.png" alt="">
                                 </div>
-                                <div class="method-info">
-                                    <div class="method-label">Buy Credits</div>
+                                <div>
+                                    <div class="method-label">Promotion Receipt</div>
+                                    <div class="method-sublabel">OTTO's</div>
                                 </div>
                             </div>
                         </td>
-                        <td><span class="value-amount">€500.00</span></td>
-                        <td></td>
-                        <td style="text-align: center;">
-                            <div class="market-icon">🇮🇹</div>
-                        </td>
+                        <td><span class="value-amount">CHF 34.00</span></td>
+                        <td><span class="additional-info">7 Products Primes-CH and Credits</span></td>
+                        <td style="text-align: center; "><img src="img/ireland-market.png" height="12" style="border-radius: 100%;"></td>
                         <td class="date-cell">2022-07-22 08:13:24</td>
                         <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
                         <td><span class="credits-positive">+ CHF 6.00</span></td>
                         <td><span class="primes-value">+0.009320 Primes-CH</span></td>
                         <td>
@@ -850,22 +871,21 @@
                     <tr>
                         <td>
                             <div class="method-cell">
-                                <div class="method-icon icon-promo">
-                                    <i class="fas fa-receipt"></i>
+                                <div class="method-icon icon-arrow">
+                                    <img src="img/conversionswap.png" alt="">
                                 </div>
-                                <div class="method-info">
-                                    <div class="method-label">Promotion Receipt</div>
-                                    <div class="method-sublabel">MIGROS</div>
+                                <div>
+                                    <div class="method-label">Conversion</div>
                                 </div>
                             </div>
                         </td>
-                        <td><span class="value-amount">CHF 220.00</span></td>
-                        <td><span class="additional-info">+15% Credits +15% Primes-CH</span></td>
-                        <td style="text-align: center;">
-                            <div class="market-icon">⊕</div>
-                        </td>
+                        <td><span class="value-amount">CHF 500.00</span></td>
+                        <td><span class="additional-info">Primes-CH → Credits</span></td>
+                        <td style="text-align: center;"><img src="img/plus.png" height="12"></td>
                         <td class="date-cell">2022-07-22 08:13:24</td>
                         <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
                         <td><span class="credits-positive">+ CHF 6.00</span></td>
                         <td><span class="primes-value">+0.009320 Primes-CH</span></td>
                         <td>
@@ -879,21 +899,21 @@
                     <tr>
                         <td>
                             <div class="method-cell">
-                                <div class="method-icon icon-blue">
-                                    <i class="fas fa-star"></i>
+                                <div class="method-icon icon-card">
+                                    <img src="img/uparrow.png" alt="">
                                 </div>
-                                <div class="method-info">
-                                    <div class="method-label">Ad:Prime Pro</div>
+                                <div>
+                                    <div class="method-label">Buy Credits</div>
                                 </div>
                             </div>
                         </td>
-                        <td><span class="value-amount">CHF 150.00</span></td>
-                        <td><span class="additional-info">CHF 50 Credits CHF 100 Primes-CH</span></td>
-                        <td style="text-align: center;">
-                            <div class="market-icon">⊕</div>
-                        </td>
+                        <td><span class="value-amount">€500.00</span></td>
+                        <td></td>
+                        <td style="text-align: center;"><img src="img/plus.png" height="12"></td>
                         <td class="date-cell">2022-07-22 08:13:24</td>
                         <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
                         <td><span class="credits-positive">+ CHF 6.00</span></td>
                         <td><span class="primes-value">+0.009320 Primes-CH</span></td>
                         <td>
@@ -907,22 +927,21 @@
                     <tr>
                         <td>
                             <div class="method-cell">
-                                <div class="method-icon icon-ticket">
-                                    <i class="fas fa-ticket-alt"></i>
+                                <div class="method-icon icon-star">
+                                    <img src="img/primeprologo.png" alt="">
                                 </div>
-                                <div class="method-info">
-                                    <div class="method-label">Redeemed Voucher</div>
-                                    <div class="method-sublabel">INTERSPAR</div>
+                                <div>
+                                    <div class="method-label">Ad:Prime Pro</div>
                                 </div>
                             </div>
                         </td>
-                        <td><span class="value-amount">€100.02</span></td>
-                        <td><span class="additional-info">100% Credits +5% Primes-CH</span></td>
-                        <td style="text-align: center;">
-                            <div class="market-icon">🇮🇹</div>
-                        </td>
+                        <td><span class="value-amount">CHF 150.00</span></td>
+                        <td><span class="additional-info">CHF 50 Credits CHF 100 Primes-CH</span></td>
+                        <td style="text-align: center;"><img src="img/plus.png" height="12"></td>
                         <td class="date-cell">2022-07-22 08:13:24</td>
                         <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Pro</span></td>
                         <td><span class="credits-positive">+ CHF 6.00</span></td>
                         <td><span class="primes-value">+0.009320 Primes-CH</span></td>
                         <td>
@@ -931,6 +950,65 @@
                             </button>
                         </td>
                     </tr>
+
+                    <!-- Row 9 -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-gift">
+                                    <img src="img/intersparlogo.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Redeemed Voucher</div>
+                                    <div class="method-sublabel">INTERSPAR</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">€100.02</span></td>
+                        <td><span class="additional-info">100% Credits +5% Primes-CH</span></td>
+                        <td style="text-align: center;"><img src="img/plus.png" height="12"></td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">VIP</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 10 -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-star">
+                                    <img src="img/primesilver.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Fintech Capitalist Bronze</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">€500.00</span></td>
+                        <td><span class="additional-info">100% Primes-CH</span></td>
+                        <td style="text-align: center;"><img src="img/plus.png" height="12"></td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">FC Bronze</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+              
+                    
                 </tbody>
             </table>
         </div>
@@ -956,6 +1034,10 @@
             </div>
         </div>
     </div>
+    <!-- Footer -->
+        <div class="login-footer">
+            <p>Copyright © 2026 Ad:Prime Scan by Blu Vela. All Rights Reserved.</p>
+        </div>
 </body>
 </html>
        
