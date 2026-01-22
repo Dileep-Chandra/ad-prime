@@ -340,6 +340,61 @@ tbody tr:hover{background:#fafafa}
     border-top:2px solid #b8c2ff;
 }
 
+.pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #fff;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .pagination-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .pagination-left select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .pagination-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: #f5f5f5;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .page-info {
+            font-size: 13px;
+            color: #666;
+            padding: 0 10px;
+        }
+
 /* ================= FOOTER ================= */
 .footer{
     text-align:center;
@@ -641,11 +696,33 @@ tbody tr:hover{background:#fafafa}
                         <td class="date-cell">2022-07-22 08:13:24</td>
                     </tr>
 
+
                 <!-- DATA ROWS (your existing rows continue here) -->
 
             </tbody>
         </table>
+
     </div>
+     <!-- Pagination -->
+        <div class="pagination">
+            <div class="pagination-left">
+                <span>Show</span>
+                <select>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+                <span>entries</span>
+            </div>
+            <div class="pagination-right">
+                <button class="page-btn"><i class="fas fa-angle-double-left"></i></button>
+                <button class="page-btn"><i class="fas fa-angle-left"></i></button>
+                <span class="page-info">Page 1 of 6</span>
+                <button class="page-btn"><i class="fas fa-angle-right"></i></button>
+                <button class="page-btn"><i class="fas fa-angle-double-right"></i></button>
+            </div>
+        </div>
 </div>
 
 <!-- FOOTER -->
