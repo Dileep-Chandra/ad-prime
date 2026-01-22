@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Transactions - Promotions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            padding: 20px 40px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo-text h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .logout-btn img {
+            width: 10px;
+            height: 10px;
+            margin-right: 2px;
+        }
+
+        .logout-btn p {
+            display: inline;
+            font-size: 14px;
+            font-weight: 500;
+
+        }
+
+
+        /* Currency Bar */
+        .currency-bar {
+            background: #fff;
+            padding: 15px 40px;
+            display: none;
+            gap: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            overflow-x: auto;
+        }
+
+        .currency-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: #f8f8f8;
+            border-radius: 6px;
+            white-space: nowrap;
+            font-size: 13px;
+        }
+
+        .currency-flag {
+            width: 24px;
+            height: 16px;
+            border-radius: 2px;
+        }
+
+        .currency-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            padding: 10px 40px;
+            display: flex;
+            gap: 30px;
+            /* border-bottom: 2px solid #e0e0e0; */
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-tabs-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-tab {
+            padding: 12px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #000;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .nav-tab.active {
+            color: #000;
+            border-bottom-color: #003EFF;
+        }
+
+        /* Search Bar */
+        .search-section {
+            background: transparent;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 25px;
+            padding: 8px 20px;
+            width: 350px;
+        }
+
+        .search-box input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 100%;
+            font-size: 13px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .search-box button {
+            background: #000;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            border-radius: 20px;
+            padding: 8px 12px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 30px 40px;
+            flex: 1;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #fff;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .pagination-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .pagination-left select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .pagination-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: #f5f5f5;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .page-info {
+            font-size: 13px;
+            color: #666;
+            padding: 0 10px;
+        }
+
+        /* Filters Section */
+        .filters-section {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+        }
+
+        .filter-group {
+            flex: 1;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-select:hover {
+            border-color: #999;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        /* Footer */
+        .login-footer {
+            text-align: center;
+            padding: 20px 40px;
+            background: #f5f5f5;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .login-footer p {
+            color: #666;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .currency-bar {
+                padding: 10px 20px;
+            }
+
+            .nav-tabs {
+                padding: 15px 20px 0;
+                gap: 15px;
+                overflow-x: auto;
+            }
+
+            .main-content {
+                padding: 20px;
+            }
+
+            table {
+                min-width: 1200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-icon {
+                width: 50px;
+                height: 50px;
+            }
+
+            .logo-text h1 {
+                font-size: 24px;
+            }
+
+            .login-footer {
+                bottom: 20px;
+            }
+
+            .login-footer p {
+                font-size: 10px;
+                padding: 0 20px;
+            }
+        }
+
+        /* ================= 2nd CARD : PRODUCTS ON PROMOTION ================= */
+
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header-row {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 40px;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 100%;
+            letter-spacing: 4.59px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        /* ================= TABLE ================= */
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+
+        th {
+            background: #f8f9fc;
+            font-weight: 600;
+        }
+
+        .more {
+            margin-top: 10px;
+            font-size: 13px;
+            color: #777;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        /* Tablet and below */
+        @media (max-width: 1024px) {
+            table {
+                font-size: 14px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+
+            .section-title {
+                font-size: 11px;
+                letter-spacing: 3px;
+                margin: 0;
+            }
+
+            .header-row {
+                margin-bottom: 10px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th,
+            td {
+                padding: 8px;
+                white-space: nowrap;
+            }
+
+            .table-wrapper {
+                overflow-x: auto;
+            }
+            .pagination
+            {
+                overflow-x: auto;
+            }
+        }
+
+        /* Small mobile */
+        @media (max-width: 480px) {
+            table {
+                font-size: 11px;
+            }
+
+            .more {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo-section">
+            <img src="img/main-logo.png" alt="" class="logo-icon">
+            <div class="logo-text">
+                <h1>Ad:Prime Scan</h1>
+            </div>
+        </div>
+        <div class="user-info">
+            <span class="user-name"><u>MA2E...55MIM, Capitalist</u></span>
+            <button class="logout-btn" title="Logout">
+                <img src="img/logout.png" alt="">
+                <p><u>Logout</u></p>
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation Tabs & Search -->
+    <div class="nav-tabs">
+        <div class="nav-tabs-container">
+            <a href="transactions.html" class="nav-tab">All transactions</a>
+            <a href="promotion.html" class="nav-tab active">Promotions</a>
+            <a href="credits.html" class="nav-tab">Credits</a>
+            <a href="membership.html" class="nav-tab">Membership</a>
+            <a href="conversions.html" class="nav-tab">Conversions</a>
+        </div>
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" placeholder="Type Wallet Address, Transaction ID">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Filters -->
+        <div class="filters-section">
+            <div class="filter-group">
+                <select class="filter-select">
+                    <option>All Categories</option>
+                    <option>Category 1</option>
+                    <option>Category 2</option>
+                    <option>Category 3</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select class="filter-select">
+                    <option>All Sub Categories</option>
+                    <option>Sub Category 1</option>
+                    <option>Sub Category 2</option>
+                    <option>Sub Category 3</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <select class="filter-select">
+                    <option>All Product lines</option>
+                    <option>Product Line 1</option>
+                    <option>Product Line 2</option>
+                    <option>Product Line 3</option>
+                </select>
+            </div>
+        </div>
+
+        <section class="card">
+            <div class="header-row">
+                <h3 class="section-title">Pasta, Condiments & Canned Food / Pasta, Rice, Semolina & Grain / Pasta</h3>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Product ID</th>
+                            <th>Product Title</th>
+                            <th>Promotion</th>
+                            <th>Barcode</th>
+                            <th>Receipt ID</th>
+                            <th>User ID</th>
+                            <th>Credits(50%)</th>
+                            <th>Primes(50%)</th>
+                            <th>Profile</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody"></tbody>
+                </table>
+            </div>
+           
+        </section>
+
+
+        <!-- Pagination -->
+          <div class="pagination">
+            <div class="pagination-left">
+                <span>Show</span>
+                <select>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+                <span>entries</span>
+            </div>
+            <div class="pagination-right">
+                <button class="page-btn"><i class="fas fa-angle-double-left"></i></button>
+                <button class="page-btn"><i class="fas fa-angle-left"></i></button>
+                <span class="page-info">Page 1 of 6</span>
+                <button class="page-btn"><i class="fas fa-angle-right"></i></button>
+                <button class="page-btn"><i class="fas fa-angle-double-right"></i></button>
+            </div>
+        </div>
+        
+    </div>
+    <!-- Footer -->
+    <div class="login-footer">
+        <p>Copyright © 2026 Ad:Prime Scan by Blu Vela. All Rights Reserved.</p>
+    </div>
+    <script>
+
+        // ================= PRODUCT LIST =================
+        const products = [
+            {
+                productId: "7853485",
+                title: "Bar***",
+                promotion: "22.00%",
+                barcode: "751***",
+                receiptId: "45435345",
+                userId: "Ma2E…55MIM",
+                credits: "2.22 CHF",
+                primes: "0.006342 Primes-CH",
+                profileBuilding: "-"
+            },
+            {
+                productId: "23412234",
+                title: "Dov***",
+                promotion: "33.00%",
+                barcode: "924***",
+                receiptId: "45435098",
+                userId: "Ma2E…55MIM",
+                credits: "4.62 CHF",
+                primes: "0.002242 Primes-CH",
+                profileBuilding: "-"
+            },
+            {
+                productId: "21341234",
+                title: "Lind***",
+                promotion: "12.00%",
+                barcode: "344***",
+                receiptId: "45435632",
+                userId: "Ma2E…55MIM",
+                credits: "3.34 CHF",
+                primes: "0.012342 Primes-CH",
+                profileBuilding: "0.25%"
+            }
+        ];
+
+        const otherProductsCount = 6;
+
+
+        // ================= DYNAMIC TABLE ROWS =================
+        const tableBody = document.getElementById("productsTableBody");
+
+        products.forEach((product, index) => {
+            const row = document.createElement("tr");
+
+            row.innerHTML = `
+        <td>${index + 1}</td>
+        <td>${product.productId}</td>
+        <td><strong>${product.title}</strong></td>
+        <td><strong>${product.promotion}</strong></td>
+        <td>${product.barcode}</td>
+        <td>${product.receiptId}</td>
+        <td>${product.userId}</td>
+		<td>${product.credits}</td>
+		<td>${product.primes}</td>
+        <td>${product.profileBuilding}</td>
+    `;
+
+            tableBody.appendChild(row);
+        });
+
+
+    </script>
+</body>
+
+</html>
