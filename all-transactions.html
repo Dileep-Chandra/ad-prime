@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Transactions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -74,11 +76,13 @@
             cursor: pointer;
             color: #666;
         }
+
         .logout-btn img {
             width: 10px;
             height: 10px;
             margin-right: 2px;
         }
+
         .logout-btn p {
             display: inline;
             font-size: 14px;
@@ -198,7 +202,7 @@
             background: #fff;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
         table {
@@ -256,31 +260,6 @@
             height: 36px;
             padding-left: 10px;
         }
-
-        /* .icon-gift {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-
-        .icon-receipt {
-            background: #fff3e0;
-            color: #f57c00;
-        }
-
-        .icon-arrow {
-            background: #f3e5f5;
-            color: #7b1fa2;
-        }
-
-        .icon-card {
-            background: #e8f5e9;
-            color: #388e3c;
-        }
-
-        .icon-star {
-            background: #fce4ec;
-            color: #c2185b;
-        } */
 
         .method-label {
             font-weight: 600;
@@ -453,7 +432,7 @@
             background: #fff;
             padding: 15px 20px;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             max-width: 600px;
         }
 
@@ -482,6 +461,300 @@
             box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
         }
 
+        /* Hamburger Menu */
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0;
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger-btn.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-btn.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background: #f5f5f5;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            padding: 40px 30px 30px 30px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .sidebar-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 36px;
+            color: #333;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            margin: 0;
+        }
+
+        .sidebar-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 700;
+            font-size: 20px;
+            display: block;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .sidebar-menu a:hover {
+            color: #003EFF;
+        }
+
+        .sidebar-footer {
+            padding: 40px 30px;
+            margin-top: auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sidebar-user {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            text-decoration: underline;
+        }
+
+        .sidebar-logout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: underline;
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 998;
+        }
+
+        .search-overlay.active {
+            display: block;
+        }
+
+        .search-modal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100vh;
+            background: #f5f5f5;
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .search-modal.active {
+            display: flex;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .search-modal-header {
+            background: #f5f5f5;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .search-modal-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 32px;
+            color: #333;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .search-modal-content {
+            flex: 1;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .search-modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000;
+            margin: 0;
+            text-align: center;
+        }
+
+        .search-modal .search-section {
+            background: transparent;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .search-modal .search-box {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 25px;
+            padding: 8px 20px;
+            width: 350px;
+        }
+
+        .search-modal .search-box input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 100%;
+            font-size: 13px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .search-modal .search-box button {
+            background: #000;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            border-radius: 20px;
+            padding: 8px 12px;
+        }
+
+        /* Search Section 2 */
+        .search-section2 {
+            background: transparent;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .search-box2 {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 25px;
+            padding: 8px 20px;
+            width: 350px;
+        }
+
+        .search-box2 input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 100%;
+            font-size: 13px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .search-box2 button {
+            background: #000;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            border-radius: 20px;
+            padding: 8px 12px;
+        }
+
         /* Footer */
         .login-footer {
             text-align: center;
@@ -499,56 +772,334 @@
         /* Responsive */
         @media (max-width: 768px) {
             .header {
-                flex-direction: column;
+                padding: 15px 20px;
+                justify-content: flex-start;
                 gap: 15px;
+            }
+
+            .hamburger-btn {
+                display: flex;
+            }
+
+            .logo-section {
+                gap: 10px;
+                flex: 1;
+                justify-content: center;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .logo-text h1 {
+                font-size: 18px;
+            }
+
+            .user-info {
+                display: none;
+            }
+
+            .search-section {
+                position: absolute;
+                right: 20px;
+                top: 15px;
+                display: flex;
+            }
+
+            .search-box {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                padding: 0;
+                justify-content: center;
+                background: transparent;
+            }
+
+            .search-box input {
+                display: none;
+            }
+
+            .search-box button {
+                background: none;
+                color: #000;
+                padding: 0;
+                border-radius: 50%;
             }
 
             .currency-bar {
                 padding: 10px 20px;
+                gap: 15px;
+            }
+
+            .currency-item {
+                padding: 6px 12px;
+                font-size: 12px;
             }
 
             .nav-tabs {
                 padding: 15px 20px 0;
                 gap: 15px;
                 overflow-x: auto;
+                justify-content: flex-start;
+                display: flex;
+            }
+
+            .nav-tab {
+                font-size: 13px;
+                padding: 10px 0;
             }
 
             .main-content {
-                padding: 20px;
+                padding: 15px;
             }
 
             .table-container {
-                overflow-x: auto;
+                box-shadow: none;
+                border-radius: 0;
             }
 
             table {
-                min-width: 1200px;
-            }
-        }
-        @media (max-width: 480px) {
-            .logo-icon {
-                width: 50px;
-                height: 50px;
+                display: block;
+                min-width: auto;
             }
 
-            .logo-text h1 {
-                font-size: 24px;
+            thead {
+                display: none;
+            }
+
+            tbody {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            tbody tr {
+                display: flex;
+                background: #fff;
+                border: 1px solid #e0e0e0;
+                border-radius: 8px;
+                padding: 12px;
+                gap: 12px;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            tbody tr:hover {
+                background: #fff;
+            }
+
+            tbody td {
+                padding: 0;
+                border: none;
+                display: flex;
+                align-items: center;
+                font-size: 13px;
+            }
+
+            tbody td:nth-child(1) {
+                flex: 1;
+                order: 1;
+            }
+
+            tbody td:nth-child(2) {
+                order: 2;
+                font-weight: 600;
+                color: #333;
+            }
+
+            /* Hide extra columns on mobile */
+            tbody td:nth-child(3),
+            tbody td:nth-child(4),
+            tbody td:nth-child(5),
+            tbody td:nth-child(6),
+            tbody td:nth-child(7),
+            tbody td:nth-child(8),
+            tbody td:nth-child(9),
+            tbody td:nth-child(10),
+            tbody td:nth-child(11) {
+                display: none;
+            }
+
+            .method-cell {
+                gap: 12px;
+                flex-direction: row;
+            }
+
+            .method-icon {
+                width: 50px;
+                height: 50px;
+                flex-shrink: 0;
+                background: #f0f0f0;
+            }
+
+            .method-icon img {
+                width: 100%;
+                height: 90%;
+                padding: 0;
+            }
+
+            .method-label {
+                font-size: 13px;
+                font-weight: 600;
+            }
+
+            .method-sublabel {
+                font-size: 11px;
+                color: #888;
+            }
+
+            .pagination {
+                flex-direction: column;
+                gap: 15px;
+                justify-content: center;
+                align-items: center;
+                padding: 15px;
+                background: transparent;
+                margin-top: 15px;
+            }
+
+            .pagination-left {
+                display: none;
+            }
+
+            .pagination-right {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .page-btn {
+                width: 36px;
+                height: 36px;
+                background: #e8e8f5;
+                border-radius: 6px;
+            }
+
+            .page-btn:hover {
+                background: #d8d8e8;
+            }
+
+            .page-info {
+                font-size: 13px;
+                padding: 0;
             }
 
             .login-footer {
-                bottom: 20px;
+                padding: 15px 20px;
+            }
+
+            .login-footer p {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 12px 15px;
+            }
+
+            .logo-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .logo-text h1 {
+                font-size: 16px;
+            }
+
+            .search-section {
+                right: 15px;
+                top: 12px;
+            }
+
+            .search-box {
+                width: 35px;
+                height: 35px;
+            }
+
+            .currency-item {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+
+            .nav-tabs {
+                padding: 12px 15px 0;
+                gap: 10px;
+            }
+
+            .nav-tab {
+                font-size: 12px;
+                padding: 8px 0;
+            }
+
+            .main-content {
+                padding: 12px;
+            }
+
+            tbody tr {
+                padding: 10px;
+                gap: 10px;
+            }
+
+            tbody td {
+                font-size: 12px;
+            }
+
+            .method-icon {
+                width: 45px;
+                height: 45px;
+            }
+
+            .method-label {
+                font-size: 12px;
+            }
+
+            .method-sublabel {
+                font-size: 10px;
+            }
+
+            .pagination {
+                padding: 12px;
+                gap: 10px;
+                margin-top: 12px;
+            }
+
+            .pagination-right {
+                gap: 8px;
+            }
+
+            .page-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .page-info {
+                font-size: 12px;
+            }
+
+            .login-footer {
+                padding: 12px 15px;
             }
 
             .login-footer p {
                 font-size: 10px;
-                padding: 0 20px;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Header -->
     <div class="header">
+        <button class="hamburger-btn" id="hamburgerBtn">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
         <div class="logo-section">
             <img src="img/main-logo.png" alt="" class="logo-icon">
             <div class="logo-text">
@@ -561,6 +1112,46 @@
                 <img src="img/logout.png" alt="">
                 <p><u>Logout</u></p>
             </button>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="sidebar-close" id="sidebarClose">×</button>
+        </div>
+        <div class="sidebar-content">
+            <ul class="sidebar-menu">
+                <li><a href="all-transactions.html">All transactions</a></li>
+                <li><a href="promotion.html">Promotions</a></li>
+                <li><a href="credits.html">Credits</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="conversions.html">Conversions</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <div class="sidebar-user">Ma2E...55MIM, Capitalist</div>
+            <button class="sidebar-logout">
+                <img src="img/logout.png" alt="" style="width: 12px; height: 12px;">
+                <span>Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-overlay" id="searchOverlay"></div>
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-header">
+            <button class="search-modal-close" id="searchModalClose">×</button>
+        </div>
+        <div class="search-modal-content">
+            <h2 class="search-modal-title">Search</h2>
+            <div class="search-section2">
+                <div class="search-box2">
+                    <input type="text" placeholder="Type Wallet Address, Transaction ID">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -599,7 +1190,7 @@
     <!-- Navigation Tabs & Search -->
     <div class="nav-tabs">
         <div class="nav-tabs-container">
-            <a href="transactions.html" class="nav-tab active">All transactions</a>
+            <a href="all-transactions.html" class="nav-tab active">All transactions</a>
             <a href="promotion.html" class="nav-tab">Promotions</a>
             <a href="credits.html" class="nav-tab">Credits</a>
             <a href="membership.html" class="nav-tab">Membership</a>
@@ -633,8 +1224,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                   <!-- Row 1 -->
-                   <tr>
+                    <!-- Row 1 -->
+                    <tr>
                         <td>
                             <div class="method-cell">
                                 <div class="method-icon icon-receipt">
@@ -646,9 +1237,10 @@
                                 </div>
                             </div>
                         </td>
-                        <td><span class="value-amount">CHF 34.00</span></td> 
+                        <td><span class="value-amount">CHF 34.00</span></td>
                         <td><span class="additional-info">+5% Primes-CH</span></td>
-                        <td style="text-align: center;"><img src="img/plus.png" height="12" style="border-radius: 100%;"></td>
+                        <td style="text-align: center;"><img src="img/plus.png" height="12"
+                                style="border-radius: 100%;"></td>
                         <td class="date-cell">2022-07-22 08:13:24</td>
                         <td><span class="transaction-id">037f***28924</span></td>
                         <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
@@ -676,9 +1268,10 @@
                                 </div>
                             </div>
                         </td>
-                        <td><span class="value-amount">CHF 34.00</span></td> 
+                        <td><span class="value-amount">CHF 34.00</span></td>
                         <td><span class="additional-info">100% Credits</span></td>
-                        <td style="text-align: center;"><img src="img/ireland-market.png" height="12" style="border-radius: 100%;"></td>
+                        <td style="text-align: center;"><img src="img/ireland-market.png" height="12"
+                                style="border-radius: 100%;"></td>
                         <td class="date-cell">2022-07-22 08:13:24</td>
                         <td><span class="transaction-id">037f***28924</span></td>
                         <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
@@ -706,9 +1299,10 @@
                                 </div>
                             </div>
                         </td>
-                        <td><span class="value-amount">CHF 34.00</span></td> 
+                        <td><span class="value-amount">CHF 34.00</span></td>
                         <td><span class="additional-info"></span></td>
-                        <td style="text-align: center;"><img src="img/plus.png" height="12" style="border-radius: 100%;"></td>
+                        <td style="text-align: center;"><img src="img/plus.png" height="12"
+                                style="border-radius: 100%;"></td>
                         <td class="date-cell">2022-07-22 08:13:24</td>
                         <td><span class="transaction-id">037f***28924</span></td>
                         <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
@@ -766,7 +1360,8 @@
                         </td>
                         <td><span class="value-amount">CHF 34.00</span></td>
                         <td><span class="additional-info">7 Products Primes-CH and Credits</span></td>
-                        <td style="text-align: center; "><img src="img/ireland-market.png" height="12" style="border-radius: 100%;"></td>
+                        <td style="text-align: center; "><img src="img/ireland-market.png" height="12"
+                                style="border-radius: 100%;"></td>
                         <td class="date-cell">2022-07-22 08:13:24</td>
                         <td><span class="transaction-id">037f***28924</span></td>
                         <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
@@ -920,8 +1515,8 @@
                             </button>
                         </td>
                     </tr>
-              
-                    
+
+
                 </tbody>
             </table>
         </div>
@@ -939,18 +1534,74 @@
                 <span>entries</span>
             </div>
             <div class="pagination-right">
-                <button class="page-btn"><i class="fas fa-angle-double-left"></i></button>
-                <button class="page-btn"><i class="fas fa-angle-left"></i></button>
+                <button class="page-btn"><img src="img/firstpage.png" alt=""></button>
+                <button class="page-btn"><img src="img/prevnav.png" alt=""></button>
                 <span class="page-info">Page 1 of 6</span>
-                <button class="page-btn"><i class="fas fa-angle-right"></i></button>
-                <button class="page-btn"><i class="fas fa-angle-double-right"></i></button>
+                <button class="page-btn"><img src="img/nextpage.png" alt=""></button>
+                <button class="page-btn"><img src="img/lastpage.png" alt=""></button>
             </div>
         </div>
     </div>
     <!-- Footer -->
-        <div class="login-footer">
-            <p>Copyright © 2026 Ad:Prime Scan by Blu Vela. All Rights Reserved.</p>
-        </div>
-</body>
-</html>
-                   
+    <div class="login-footer">
+        <p>Copyright © 2026 Ad:Prime Scan by Blu Vela. All Rights Reserved.</p>
+    </div>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarClose = document.getElementById('sidebarClose');
+        const searchModal = document.getElementById('searchModal');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchModalClose = document.getElementById('searchModalClose');
+        const searchButton = document.querySelector('.nav-tabs .search-box button');
+        const modalSearchButton = document.querySelector('.search-modal .search-box button');
+
+        // Toggle hamburger menu
+        hamburgerBtn.addEventListener('click', function () {
+            hamburgerBtn.classList.toggle('active');
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar
+        sidebarClose.addEventListener('click', function () {
+            hamburgerBtn.classList.remove('active');
+            sidebar.classList.remove('active');
+        });
+
+        // Open search modal from navigation search button
+        if (searchButton) {
+            searchButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                searchModal.classList.add('active');
+                searchOverlay.classList.add('active');
+            });
+        }
+
+        // Close search modal
+        searchModalClose.addEventListener('click', function () {
+            searchModal.classList.remove('active');
+            searchOverlay.classList.remove('active');
+        });
+
+        // Close search modal on overlay click
+        searchOverlay.addEventListener('click', function () {
+            searchModal.classList.remove('active');
+            searchOverlay.classList.remove('active');
+        });
+
+        // Show hamburger button on mobile
+        function updateMenuDisplay() {
+            if (window.innerWidth <= 768) {
+                hamburgerBtn.style.display = 'flex';
+            } else {
+                hamburgerBtn.style.display = 'none';
+                hamburgerBtn.classList.remove('active');
+                sidebar.classList.remove('active');
+            }
+        }
+
+        updateMenuDisplay();
+        window.addEventListener('resize', updateMenuDisplay);
+    </script>
