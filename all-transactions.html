@@ -556,7 +556,7 @@
         .sidebar-menu a {
             text-decoration: none;
             color: #333;
-            font-weight: 700;
+            font-weight: 600;
             font-size: 20px;
             display: block;
             padding: 0;
@@ -831,11 +831,15 @@
             .currency-bar {
                 padding: 10px 20px;
                 gap: 15px;
+                background: #fff;
             }
 
             .currency-item {
                 padding: 6px 12px;
                 font-size: 12px;
+                flex-direction: column;
+                gap: 5px;
+                align-items: flex-start;
             }
 
             .nav-tabs {
@@ -853,6 +857,7 @@
 
             .main-content {
                 padding: 15px;
+                background: #fff;
             }
 
             .table-container {
@@ -866,19 +871,44 @@
             }
 
             thead {
+                display: table;
+                width: 100%;
+                background: transparent;
+            }
+
+            th {
+                padding: 15px 0;
+                text-align: left;
+                font-size: 12px;
+                color: #545454;
+                letter-spacing: 0.5px;
+                border-bottom: 1px solid #ddd;
+                font-weight: 400;
+            }
+
+            th:nth-child(1) {
+                display: table-cell;
+            }
+
+            th:nth-child(2) {
+                display: table-cell;
+                text-align: right;
+            }
+
+            th:nth-child(n+3) {
                 display: none;
             }
 
             tbody {
                 display: flex;
                 flex-direction: column;
-                gap: 15px;
+                gap: 10px;
             }
 
             tbody tr {
                 display: flex;
-                background: #fff;
-                border: 1px solid #e0e0e0;
+                background: #E2E8FD;
+                border: none;
                 border-radius: 8px;
                 padding: 12px;
                 gap: 12px;
@@ -887,7 +917,7 @@
             }
 
             tbody tr:hover {
-                background: #fff;
+                background: #e8e8f5;
             }
 
             tbody td {
@@ -956,7 +986,7 @@
                 justify-content: center;
                 align-items: center;
                 padding: 15px;
-                background: transparent;
+                background: #fff;
                 margin-top: 15px;
             }
 
@@ -989,6 +1019,7 @@
 
             .login-footer {
                 padding: 15px 20px;
+                background: #fff;
             }
 
             .login-footer p {
@@ -1040,7 +1071,10 @@
             }
 
             tbody tr {
-                padding: 10px;
+                padding-top: 6px;
+                padding-bottom: 6px;
+                padding-left: 10px;
+                padding-right: 10px;
                 gap: 10px;
             }
 
@@ -1210,7 +1244,7 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Products</th>
+                        <th>Method</th>
                         <th>Value</th>
                         <th>Additional Info.</th>
                         <th>Market</th>
