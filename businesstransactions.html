@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transactions – Ad:Prime Scan</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f3f3f3;
+    color:#333;
+}
+
+/* Header */
+        .header {
+            background: #fff;
+            padding: 20px 40px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .logo-text h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+        }
+        .logout-btn img {
+            width: 10px;
+            height: 10px;
+            margin-right: 2px;
+        }
+        .logout-btn p {
+            display: inline;
+            font-size: 14px;
+            font-weight: 500;
+
+        }
+
+
+        /* Currency Bar */
+        .currency-bar {
+            background: #fff;
+            padding: 15px 40px;
+            display: flex;
+            gap: 20px;
+            border-bottom: 1px solid #e0e0e0;
+            overflow-x: auto;
+        }
+
+        .currency-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: #f8f8f8;
+            border-radius: 6px;
+            white-space: nowrap;
+            font-size: 13px;
+        }
+
+        .currency-flag {
+            width: 24px;
+            height: 16px;
+            border-radius: 2px;
+        }
+
+        .currency-value {
+            font-weight: 600;
+            color: #333;
+        }
+
+
+        /* Table */
+        .table-container {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #fff;
+        }
+
+        th {
+            padding: 15px 20px;
+            text-align: left;
+            font-size: 12px;
+            letter-spacing: 0.5px;
+            font-weight: 200;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 13px;
+            vertical-align: middle;
+        }
+
+        tbody tr:hover {
+            background: #fafafa;
+        }
+
+        /* Method Column */
+        .method-cell {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .method-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .method-icon img {
+            width: 64px;
+            height: 36px;
+            padding-left: 10px;
+        }
+
+        .method-label {
+            font-weight: 200;
+            color: #333;
+            font-size: 13px;
+        }
+
+        .method-sublabel {
+            font-size: 11px;
+            color: #888;
+        }
+
+        .value-amount {
+            color: #333;
+            font-size: 12px;
+        }
+
+        .additional-info {
+            font-size: 12px;
+            color: #14854D;
+            font-weight: 300;
+        }
+
+        .transaction-id {
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .user-cell {
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .membership-badge {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            display: inline-block;
+        }
+
+        .credits-positive {
+            font-size: 12px;
+        }
+
+        .primes-value {
+            color: #003EFF;
+            font-size: 12px;
+        }
+
+        .details-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #003EFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .details-btn:hover {
+            background: #0052a3;
+            transform: scale(1.1);
+        }
+
+        .date-cell {
+            color: #666;
+            font-size: 12px;
+        }
+
+
+/* ================= FILTER BAR ================= */
+.filters-bar{
+    padding:15px 40px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+}
+.filter{
+    background:#fff;
+    border-radius:20px;
+    padding:6px 14px;
+    font-size:13px;
+    border:1px solid #ddd;
+    cursor:pointer;
+}
+.filter select,.filter input{
+    border:none;
+    outline:none;
+    font-size:13px;
+    background:none;
+}
+.search-box{
+    margin-left:auto;
+    display:flex;
+    background:#fff;
+    border-radius:25px;
+    overflow:hidden;
+}
+.search-box input{
+    border:none;
+    padding:8px 15px;
+    font-size:13px;
+    width:220px;
+}
+.search-box button{
+    background:#000;
+    color:#fff;
+    border:none;
+    padding:0 16px;
+}
+
+/* ================= MAIN ================= */
+.main-content{
+    padding:20px 40px;
+}
+
+/* ================= DATE STRIP ================= */
+.date-strip{
+    display:flex;
+    gap:15px;
+    margin-bottom:10px;
+    /* background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 2px 6px rgba(0,0,0,.06); */
+}
+.date-strip input{
+    padding:8px 12px;
+    font-size:13px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+/* ================= TABLE ================= */
+.table-container{
+    background:#fff;
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 2px 6px rgba(0,0,0,.06);
+}
+table{width:100%;border-collapse:collapse}
+th{
+    text-align:left;
+    padding:14px 16px;
+    font-size:12px;
+    color:#555;
+}
+td{
+    padding:14px 16px;
+    font-size:13px;
+    border-top:1px solid #eee;
+}
+tbody tr:hover{background:#fafafa}
+
+/* TOTAL ROW */
+.total-row{
+    background:#e9edff;
+    font-weight:500;
+}
+.total-row td{
+    border-top:2px solid #b8c2ff;
+}
+
+.pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: #fff;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .pagination-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .pagination-left select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .pagination-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: #f5f5f5;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .page-info {
+            font-size: 13px;
+            color: #666;
+            padding: 0 10px;
+        }
+
+/* ================= FOOTER ================= */
+.footer{
+    text-align:center;
+    padding:20px;
+    font-size:12px;
+    color:#666;
+}
+
+/* ================= BOTTOM FILTER CARDS ================= */
+.bottom-filters{
+    padding:30px 40px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:20px;
+}
+.filter-card{
+    background:#fff;
+    border-radius:6px;
+    box-shadow:0 2px 6px rgba(0,0,0,.08);
+    padding:15px;
+    max-height:220px;
+    overflow:auto;
+}
+.filter-card h4{
+    font-size:14px;
+    margin-bottom:10px;
+    color:#c62828;
+}
+.filter-card ul{list-style:none}
+.filter-card li{
+    font-size:13px;
+    padding:6px 0;
+    border-bottom:1px solid #eee;
+}
+</style>
+</head>
+
+<body>
+
+ <!-- Header -->
+    <div class="header">
+        <div class="logo-section">
+            <img src="img/main-logo.png" alt="" class="logo-icon">
+            <div class="logo-text">
+                <h1>Ad:Prime Scan</h1>
+            </div>
+        </div>
+        <div class="user-info">
+            <span class="user-name"><u>MA2E...55MIM, Capitalist</u></span>
+            <button class="logout-btn" title="Logout">
+                <img src="img/logout.png" alt="">
+                <p><u>Logout</u></p>
+            </button>
+        </div>
+    </div>
+
+    <!-- Currency Bar -->
+    <div class="currency-bar">
+        <div class="currency-item">
+            <span>Primes-CH 🇨🇭</span>
+            <span class="currency-value">CHF 620.16</span>
+        </div>
+        <div class="currency-item">
+            <span>Primes-IT 🇮🇹</span>
+            <span class="currency-value">€264.16</span>
+        </div>
+        <div class="currency-item">
+            <span>Primes-US 🇺🇸</span>
+            <span class="currency-value">$ 16.36</span>
+        </div>
+        <div class="currency-item">
+            <span>Primes-AT 🇦🇹</span>
+            <span class="currency-value">€264.16</span>
+        </div>
+        <div class="currency-item">
+            <span>Primes-GL 🌐</span>
+            <span class="currency-value">$16.36</span>
+        </div>
+        <div class="currency-item">
+            <span>Primes-DE 🇩🇪</span>
+            <span class="currency-value">€264.16</span>
+        </div>
+        <div class="currency-item">
+            <span>Primes-IN 🇮🇳</span>
+            <span class="currency-value">INR 1.00</span>
+        </div>
+    </div>
+
+
+<!-- FILTER BAR -->
+<div class="filters-bar">
+    <div class="filter"><select><option>All Regional</option></select></div>
+    <div class="filter"><select><option>All Agents</option></select></div>
+    <div class="filter"><select><option>All Success Managers</option></select></div>
+    <div class="filter"><select><option>All Companies</option></select></div>
+    <div class="filter"><select><option>All Stores</option></select></div>
+    <div class="filter"><select><option>All Cashiers</option></select></div>
+    <div class="search-box">
+        <input placeholder="Transaction ID">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+</div>
+
+<!-- MAIN -->
+<div class="main-content">
+
+    <!-- DATE PICKERS -->
+    <div class="date-strip">
+        <div class="filter"><select><option>All Bonuses</option></select></div>
+        <input type="date">
+        <input type="date">
+    </div>
+
+    <!-- TABLE -->
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>CHF</th>
+                    <th>Payback Credits</th>
+                    <th>Payback Primes</th>
+                    <th>TransactionID</th>
+                    <th>User Wallet</th>
+                    <th>Company</th>
+                    <th>Store</th>
+                    <th>Cashier</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <!-- TOTAL -->
+                <tr class="total-row">
+                    <td>TOTAL</td>
+                    <td>CHF 34,150.00</td>
+                    <td></td>
+                    <td>+0.000032 Primes-CH</td>
+                    <td>3434</td>
+                    <td>22</td>
+                    <td>434</td>
+                    <td>34</td>
+                    <td>11</td>
+                    <td></td>
+                </tr>
+                 <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-gift">
+                                    <img src="img/intersparlogo.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label" style="font-weight: 500;">Redeemed Voucher</div>
+                                    <div class="method-sublabel">CHF 50.00 - 2.5%</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount"></span></td>
+                        <td><span class="additional-info">CHF 0.025</span></td>
+                        <td><span class="primes-value">+0.000032 Primes-CH</span></td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Seven</span></td>
+                        <td><span class="credits-positive">Seven Riva</span></td>
+                        <td><span class="">Peter</span></td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-gift">
+                                    <img src="img/primemerchant.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label" style="font-weight: 500;">Ad:Prime Merchant Activation</div>
+                                    <div class="method-sublabel"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 150.00</span></td>
+                        <td><span class="additional-info"></span></td>
+                        <td><span class="primes-value"></span></td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper"></span></td>
+                        <td><span class="credits-positive"></span></td>
+                        <td><span class="">Peter</span></td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-gift">
+                                    <img src="img/fincap.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label" style="font-weight: 500;">New Capitalist</div>
+                                    <div class="method-sublabel"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 30.00</span></td>
+                        <td><span class="additional-info"></span></td>
+                        <td><span class="primes-value"></span></td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper"></span></td>
+                        <td><span class="credits-positive"></span></td>
+                        <td><span class="">Peter</span></td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-gift">
+                                    <img src="img/primeprologo.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label" style="font-weight: 500;">Ad: Prime Pro</div>
+                                    <div class="method-sublabel"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 7.00</span></td>
+                        <td><span class="additional-info"></span></td>
+                        <td><span class="primes-value"></span></td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Seven</span></td>
+                        <td><span class="credits-positive">Seven Riva</span></td>
+                        <td><span class="">Peter</span></td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-gift">
+                                    <img src="img/intersparlogo.png" alt="">
+                                </div>
+                                <div>
+                                   <div class="method-label" style="font-weight: 500;">Redeemed Voucher</div>
+                                    <div class="method-sublabel">CHF 50.00 - 2.5%</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount"></span></td>
+                        <td><span class="additional-info">CHF 0.025</span></td>
+                        <td><span class="primes-value">+0.000032 Primes-CH</span></td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Seven</span></td>
+                        <td><span class="credits-positive">Seven Riva</span></td>
+                        <td><span class="">Peter</span></td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-gift">
+                                    <img src="img/appx.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label" style="font-weight: 500;">Employees Loyalty in APPX</div>
+                                    <div class="method-sublabel"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 20000.00</span></td>
+                        <td><span class="additional-info"></span></td>
+                        <td><span class="primes-value"></span></td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper"></span></td>
+                        <td><span class="credits-positive"></span></td>
+                        <td><span class="">Peter</span></td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-gift">
+                                    <img src="img/spac.png" alt="">
+                                </div>
+                                <div>
+                                     <div class="method-label" style="font-weight: 500;">SPAC</div>
+                                    <div class="method-sublabel"></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 2000.00</span></td>
+                        <td><span class="additional-info"></span></td>
+                        <td><span class="primes-value"></span></td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper"></span></td>
+                        <td><span class="credits-positive"></span></td>
+                        <td><span class="">Peter</span></td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                    </tr>
+
+
+                <!-- DATA ROWS (your existing rows continue here) -->
+
+            </tbody>
+        </table>
+
+    </div>
+     <!-- Pagination -->
+        <div class="pagination">
+            <div class="pagination-left">
+                <span>Show</span>
+                <select>
+                    <option>10</option>
+                    <option>20</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+                <span>entries</span>
+            </div>
+            <div class="pagination-right">
+                <button class="page-btn"><i class="fas fa-angle-double-left"></i></button>
+                <button class="page-btn"><i class="fas fa-angle-left"></i></button>
+                <span class="page-info">Page 1 of 6</span>
+                <button class="page-btn"><i class="fas fa-angle-right"></i></button>
+                <button class="page-btn"><i class="fas fa-angle-double-right"></i></button>
+            </div>
+        </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    Copyright © 2026 Ad:Prime Scan by Blu Vela. All Rights Reserved.
+</div>
+
+<!-- BOTTOM FILTER CARDS -->
+<div class="bottom-filters">
+    <div class="filter-card">
+        <h4>All bonuses</h4>
+        <ul>
+            <li>Payback</li>
+            <li>Pro</li>
+            <li>Capitalist</li>
+            <li>Merchant Activation</li>
+            <li>SPAC</li>
+        </ul>
+    </div>
+
+    <div class="filter-card">
+        <h4>All companies</h4>
+        <ul>
+            <li>Seven</li>
+            <li>Seven Night Life</li>
+        </ul>
+    </div>
+
+    <div class="filter-card">
+        <h4>All stores</h4>
+        <ul>
+            <li>Seven Lugano</li>
+            <li>Seven Club</li>
+            <li>Seven Enoteca</li>
+        </ul>
+    </div>
+
+    <div class="filter-card">
+        <h4>All cashiers</h4>
+        <ul>
+            <li>Peter</li>
+            <li>Fuchs Bucher</li>
+            <li>Kaufmann Eberhart</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f5f5f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: #fff;
+            padding: 20px 40px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #00d4ff, #0099ff);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo-text h1 {
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .logout-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .logout-btn img {
+            width: 10px;
+            height: 10px;
+            margin-right: 2px;
+        }
+
+        .logout-btn p {
+            display: inline;
+            font-size: 14px;
+            font-weight: 500;
+
+        }
+
+
+        /* Currency Bar */
+        .currency-bar {
+            background: #fff;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            border-bottom: 1px solid #e0e0e0;
+            overflow-x: auto;
+        }
+
+        .currency-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            white-space: nowrap;
+            font-size: 13px;
+        }
+
+        .currency-label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .currency-flag {
+            width: 16px;
+            height: 12px;
+            border-radius: 2px;
+        }
+
+        .currency-value {
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            padding: 10px 40px;
+            display: flex;
+            gap: 30px;
+            /* border-bottom: 2px solid #e0e0e0; */
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-tabs-container {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-tab {
+            padding: 12px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #000;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            position: relative;
+            text-decoration: none;
+        }
+
+        .nav-tab.active {
+            color: #000;
+            border-bottom-color: #003EFF;
+        }
+
+        /* Search Bar */
+        .search-section {
+            background: transparent;
+            padding: 0;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 25px;
+            padding: 8px 20px;
+            width: 350px;
+        }
+
+        .search-box input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 100%;
+            font-size: 13px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .search-box button {
+            background: #000;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            border-radius: 20px;
+            padding: 8px 12px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 30px 40px;
+            flex: 1;
+        }
+
+        /* Table */
+        .table-container {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .table-wrapper {
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #fff;
+        }
+
+        th {
+            padding: 15px 20px;
+            text-align: left;
+            font-size: 12px;
+            color: #545454;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 13px;
+            vertical-align: middle;
+        }
+
+        tbody tr {
+            background: #fff;
+        }
+
+        tbody tr:hover {
+            background: #fafafa;
+        }
+
+        /* Light background for Method and Value columns */
+        tbody td:nth-child(1),
+        tbody td:nth-child(2) {
+            background: #F8F9FF;
+        }
+
+        tbody tr:hover td:nth-child(1),
+        tbody tr:hover td:nth-child(2) {
+            background: #F0F2FF;
+        }
+
+        .combined-cell {
+            background: #1976d2;
+            color: #fff;
+        }
+
+        /* Method Column */
+        .method-cell {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .method-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+
+        .method-icon img {
+            width: 64px;
+            height: 36px;
+            padding-left: 10px;
+        }
+
+        .method-label {
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+        }
+
+        .method-sublabel {
+            font-size: 11px;
+            color: #888;
+        }
+
+        /* Value Column */
+        .value-amount {
+            color: #333;
+            font-size: 12px;
+        }
+
+        /* Additional Info */
+        .additional-info {
+            font-size: 12px;
+            color: #003EFF;
+            font-weight: 500;
+        }
+
+        .additional-info-line {
+            display: block;
+            font-size: 12px;
+            color: #003EFF;
+            font-weight: 500;
+        }
+
+        /* Market Cell with Flag and Status */
+        .market-cell {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .market-status {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .status-red {
+            background: #FF3B30;
+        }
+
+        .status-green {
+            background: #34C759;
+        }
+
+        /* Market Flag */
+        .market-flag {
+            width: 28px;
+            height: 20px;
+            border-radius: 3px;
+            object-fit: cover;
+        }
+
+        /* Date */
+        .date-cell {
+            color: #666;
+            font-size: 12px;
+        }
+
+        /* Transaction ID */
+        .transaction-id {
+            text-decoration: underline;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* User */
+        .user-cell {
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* Membership Badge */
+        .membership-badge {
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            text-decoration: underline;
+            display: inline-block;
+        }
+
+        .badge-pro {
+            background: #f3e5f5;
+            color: #7b1fa2;
+        }
+
+        .badge-vip {
+            background: #fff9c4;
+            color: #f57f17;
+        }
+
+        .badge-bronze {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        /* Credits */
+        .credits-positive {
+            color: #003EFF;
+            font-size: 13px;
+        }
+
+        /* Primes */
+        .primes-value {
+            color: #003EFF;
+            font-size: 13px;
+        }
+
+        /* Details Button */
+        .details-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: #003EFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .details-btn:hover {
+            background: #0052a3;
+            transform: scale(1.1);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 20px;
+            background: #fff;
+            margin-top: 0;
+            border-radius: 0 0 8px 8px;
+        }
+
+        .pagination-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .pagination-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .page-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: #f5f5f5;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .page-btn:hover {
+            background: #e0e0e0;
+        }
+
+        .page-info {
+            font-size: 13px;
+            color: #666;
+            padding: 0 10px;
+        }
+
+        /* Filters Section */
+        .filters-section {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            background: #fff;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            max-width: 600px;
+        }
+
+        .filter-group {
+            flex: 1;
+        }
+
+        .filter-select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 13px;
+            background: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-select:hover {
+            border-color: #999;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        /* Hamburger Menu */
+        .hamburger-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+            padding: 0;
+        }
+
+        .hamburger-line {
+            width: 24px;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        .hamburger-btn.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+
+        .hamburger-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-btn.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100vh;
+            background: #f5f5f5;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        .sidebar-header {
+            padding: 40px 30px 30px 30px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .sidebar-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 36px;
+            color: #333;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sidebar-content {
+            flex: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            margin: 0;
+        }
+
+        .sidebar-menu a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-size: 20px;
+            display: block;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .sidebar-menu a:hover {
+            color: #003EFF;
+        }
+
+        .sidebar-footer {
+            padding: 40px 30px;
+            margin-top: auto;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .sidebar-user {
+            font-size: 14px;
+            font-weight: 700;
+            color: #333;
+            text-decoration: underline;
+        }
+
+        .sidebar-logout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #333;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: underline;
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 998;
+        }
+
+        .search-overlay.active {
+            display: block;
+        }
+
+        .search-modal {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100vh;
+            background: #f5f5f5;
+            display: none;
+            flex-direction: column;
+            z-index: 1000;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        .search-modal.active {
+            display: flex;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(0);
+            }
+        }
+
+        .search-modal-header {
+            background: #f5f5f5;
+            padding: 20px 30px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .search-modal-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 32px;
+            color: #333;
+            padding: 0;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+        }
+
+        .search-modal-content {
+            flex: 1;
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .search-modal-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #000;
+            margin: 0;
+            text-align: center;
+        }
+
+        .search-modal .search-section {
+            background: transparent;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .search-modal .search-box {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 25px;
+            padding: 8px 20px;
+            width: 350px;
+        }
+
+        .search-modal .search-box input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 100%;
+            font-size: 13px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .search-modal .search-box button {
+            background: #000;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            border-radius: 20px;
+            padding: 8px 12px;
+        }
+
+        /* Search Section 2 */
+        .search-section2 {
+            background: transparent;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .search-box2 {
+            display: flex;
+            align-items: center;
+            background: #fff;
+            border-radius: 25px;
+            padding: 8px 20px;
+            width: 350px;
+        }
+
+        .search-box2 input {
+            border: none;
+            background: none;
+            outline: none;
+            width: 100%;
+            font-size: 13px;
+            font-style: italic;
+            color: #666;
+        }
+
+        .search-box2 button {
+            background: #000;
+            border: none;
+            cursor: pointer;
+            color: #fff;
+            border-radius: 20px;
+            padding: 8px 12px;
+        }
+
+        /* Footer */
+        .login-footer {
+            text-align: center;
+            padding: 20px 40px;
+            background: #f5f5f5;
+            border-top: 1px solid #e0e0e0;
+        }
+
+        .login-footer p {
+            color: #666;
+            font-size: 12px;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+                justify-content: flex-start;
+                gap: 15px;
+            }
+
+            .hamburger-btn {
+                display: flex;
+            }
+
+            .logo-section {
+                gap: 10px;
+                flex: 1;
+                justify-content: center;
+            }
+
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .logo-text h1 {
+                font-size: 18px;
+            }
+
+            .user-info {
+                display: none;
+            }
+
+            .search-section {
+                position: absolute;
+                right: 20px;
+                top: 15px;
+                display: flex;
+            }
+
+            .search-box {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                padding: 0;
+                justify-content: center;
+                background: transparent;
+            }
+
+            .search-box input {
+                display: none;
+            }
+
+            .search-box button {
+                background: none;
+                color: #000;
+                padding: 0;
+                border-radius: 50%;
+            }
+
+            .currency-bar {
+                padding: 10px 20px;
+                gap: 15px;
+                background: #fff;
+                justify-content: flex-start;
+            }
+
+            .currency-item {
+                padding: 6px 12px;
+                font-size: 12px;
+                flex-direction: column;
+                gap: 5px;
+                align-items: flex-start;
+            }
+
+            .nav-tabs {
+                padding: 15px 20px 0;
+                gap: 15px;
+                overflow-x: auto;
+                justify-content: flex-start;
+                display: flex;
+            }
+
+            .nav-tab {
+                font-size: 13px;
+                padding: 10px 0;
+            }
+
+            .main-content {
+                padding: 15px;
+                background: #fff;
+            }
+
+            .table-container {
+                box-shadow: none;
+                border-radius: 0;
+            }
+
+            table {
+                display: block;
+                min-width: auto;
+            }
+
+            thead {
+                display: table;
+                width: 100%;
+                background: transparent;
+            }
+
+            th {
+                padding: 15px 0;
+                text-align: left;
+                font-size: 12px;
+                color: #545454;
+                letter-spacing: 0.5px;
+                border-bottom: 1px solid #ddd;
+                font-weight: 400;
+            }
+
+            th:nth-child(1) {
+                display: table-cell;
+            }
+
+            th:nth-child(2) {
+                display: table-cell;
+                text-align: right;
+            }
+
+            th:nth-child(n+3) {
+                display: none;
+            }
+
+            tbody {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            tbody tr {
+                display: flex;
+                background: #E2E8FD;
+                border: none;
+                border-radius: 8px;
+                padding: 12px;
+                gap: 12px;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            tbody tr:hover {
+                background: #e8e8f5;
+            }
+
+            tbody td {
+                padding: 0;
+                border: none;
+                display: flex;
+                align-items: center;
+                font-size: 13px;
+            }
+
+            tbody td:nth-child(1) {
+                flex: 1;
+                order: 1;
+                background: transparent !important;
+            }
+
+            tbody td:nth-child(2) {
+                order: 2;
+                font-weight: 600;
+                color: #333;
+                background: transparent !important;
+            }
+
+            /* Hide extra columns on mobile */
+            tbody td:nth-child(3),
+            tbody td:nth-child(4),
+            tbody td:nth-child(5),
+            tbody td:nth-child(6),
+            tbody td:nth-child(7),
+            tbody td:nth-child(8),
+            tbody td:nth-child(9),
+            tbody td:nth-child(10),
+            tbody td:nth-child(11) {
+                display: none;
+            }
+
+            .method-cell {
+                gap: 12px;
+                flex-direction: row;
+            }
+
+            .method-icon {
+                width: 50px;
+                height: 50px;
+                flex-shrink: 0;
+                background: #f0f0f0;
+            }
+
+            .method-icon img {
+                width: 100%;
+                height: 90%;
+                padding: 0;
+            }
+
+            .method-label {
+                font-size: 13px;
+                font-weight: 600;
+            }
+
+            .method-sublabel {
+                font-size: 11px;
+                color: #888;
+            }
+
+            .pagination {
+                flex-direction: column;
+                gap: 15px;
+                justify-content: center;
+                align-items: center;
+                padding: 15px;
+                background: #fff;
+                margin-top: 15px;
+            }
+
+            .pagination-left {
+                display: none;
+            }
+
+            .pagination-right {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .page-btn {
+                width: 36px;
+                height: 36px;
+                background: #e8e8f5;
+                border-radius: 6px;
+            }
+
+            .page-btn:hover {
+                background: #d8d8e8;
+            }
+
+            .page-info {
+                font-size: 13px;
+                padding: 0;
+            }
+
+            .login-footer {
+                padding: 15px 20px;
+                background: #fff;
+            }
+
+            .login-footer p {
+                font-size: 11px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 12px 15px;
+            }
+
+            .logo-icon {
+                width: 35px;
+                height: 35px;
+            }
+
+            .logo-text h1 {
+                font-size: 16px;
+            }
+
+            .search-section {
+                right: 15px;
+                top: 12px;
+            }
+
+            .search-box {
+                width: 35px;
+                height: 35px;
+            }
+
+            .currency-item {
+                padding: 5px 10px;
+                font-size: 11px;
+            }
+
+            .nav-tabs {
+                padding: 12px 15px 0;
+                gap: 10px;
+            }
+
+            .nav-tab {
+                font-size: 12px;
+                padding: 8px 0;
+            }
+
+            .main-content {
+                padding: 12px;
+            }
+
+            tbody tr {
+                padding-top: 6px;
+                padding-bottom: 6px;
+                padding-left: 10px;
+                padding-right: 10px;
+                gap: 10px;
+            }
+
+            tbody td {
+                font-size: 12px;
+            }
+
+            .method-icon {
+                width: 45px;
+                height: 45px;
+            }
+
+            .method-label {
+                font-size: 12px;
+            }
+
+            .method-sublabel {
+                font-size: 10px;
+            }
+
+            .pagination {
+                padding: 12px;
+                gap: 10px;
+                margin-top: 12px;
+            }
+
+            .pagination-right {
+                gap: 8px;
+            }
+
+            .page-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .page-info {
+                font-size: 12px;
+            }
+
+            .login-footer {
+                padding: 12px 15px;
+            }
+
+            .login-footer p {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <div class="header">
+        <button class="hamburger-btn" id="hamburgerBtn">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+        </button>
+        <div class="logo-section">
+            <img src="img/main-logo.png" alt="" class="logo-icon">
+            <div class="logo-text">
+                <h1>Ad:Prime Scan</h1>
+            </div>
+        </div>
+        <div class="user-info">
+            <span class="user-name"><u>MA2E...55MIM, Capitalist</u></span>
+            <button class="logout-btn" title="Logout">
+                <img src="img/logout.png" alt="">
+                <p><u>Logout</u></p>
+            </button>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <button class="sidebar-close" id="sidebarClose">×</button>
+        </div>
+        <div class="sidebar-content">
+            <ul class="sidebar-menu">
+                <li><a href="all-transactions.html">All transactions</a></li>
+                <li><a href="promotion.html">Promotions</a></li>
+                <li><a href="credits.html">Credits</a></li>
+                <li><a href="membership.html">Membership</a></li>
+                <li><a href="conversions.html">Conversions</a></li>
+            </ul>
+        </div>
+        <div class="sidebar-footer">
+            <div class="sidebar-user">Ma2E...55MIM, Capitalist</div>
+            <button class="sidebar-logout">
+                <img src="img/logout.png" alt="" style="width: 12px; height: 12px;">
+                <span>Logout</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div class="search-overlay" id="searchOverlay"></div>
+    <div class="search-modal" id="searchModal">
+        <div class="search-modal-header">
+            <button class="search-modal-close" id="searchModalClose">×</button>
+        </div>
+        <div class="search-modal-content">
+            <h2 class="search-modal-title">Search</h2>
+            <div class="search-section2">
+                <div class="search-box2">
+                    <input type="text" placeholder="Type Wallet Address, Transaction ID">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Currency Bar -->
+    <div class="currency-bar">
+        <div class="currency-item">
+            <span class="currency-label">Primes-CH <img src="img/ch-flag.png" class="currency-flag" alt="CH"></span>
+            <span class="currency-value">CHF 620.16</span>
+        </div>
+        <div class="currency-item">
+            <span class="currency-label">Primes-IT <img src="img/it-flag.png" class="currency-flag" alt="IT"></span>
+            <span class="currency-value">€264.16</span>
+        </div>
+        <div class="currency-item">
+            <span class="currency-label">Primes-US <img src="img/us-flag.png" class="currency-flag" alt="US"></span>
+            <span class="currency-value">$ 16.36</span>
+        </div>
+        <div class="currency-item">
+            <span class="currency-label">Primes-AT <img src="img/at-flag.png" class="currency-flag" alt="AT"></span>
+            <span class="currency-value">€ 264.16</span>
+        </div>
+        <div class="currency-item">
+            <span class="currency-label">Primes-GL <img src="img/gl-flag.png" class="currency-flag" alt="GL"></span>
+            <span class="currency-value">$16.36</span>
+        </div>
+        <div class="currency-item">
+            <span class="currency-label">Primes-DE <img src="img/de-flag.png" class="currency-flag" alt="DE"></span>
+            <span class="currency-value">€264.16</span>
+        </div>
+        <div class="currency-item">
+            <span class="currency-label">Primes-IN <img src="img/in-flag.png" class="currency-flag" alt="IN"></span>
+            <span class="currency-value">INR 1.00</span>
+        </div>
+    </div>
+
+    <!-- Navigation Tabs & Search -->
+    <div class="nav-tabs">
+        <div class="nav-tabs-container">
+            <a href="all-transactions.html" class="nav-tab active">All transactions</a>
+            <a href="promotion.html" class="nav-tab">Promotions</a>
+            <a href="credits.html" class="nav-tab">Credits</a>
+            <a href="membership.html" class="nav-tab">Membership</a>
+            <a href="conversions.html" class="nav-tab">Conversions</a>
+        </div>
+        <div class="search-section">
+            <div class="search-box">
+                <input type="text" placeholder="Type Wallet Address, Transaction ID">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Method</th>
+                        <th>Value</th>
+                        <th>Additional Info.</th>
+                        <th>Market</th>
+                        <th>Date</th>
+                        <th>TransactionID</th>
+                        <th>User</th>
+                        <th>Membership</th>
+                        <th>Credits</th>
+                        <th>Primes</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Row 1 - Christmas Promotion -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-receipt">
+                                    <img src="img/christmaspromotion.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Christmas Promotion</div>
+                                    <div class="method-sublabel">Ad:Prime</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 39.00</span></td>
+                        <td><span class="additional-info">+20% Primes-CH</span></td>
+                        <td>
+                            <div class="market-cell">
+                                <img src="img/ch-flag.png" height="14" style="border-radius: 2px;">
+                            </div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 2 - Christmas Promotion -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-receipt">
+                                    <img src="img/christmaspromotion.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Christmas Promotion</div>
+                                    <div class="method-sublabel">Ad:Prime</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 99.00</span></td>
+                        <td><span class="additional-info">+50% Primes-CH</span></td>
+                        <td>
+                            <div class="market-cell">
+                                <img src="img/ch-flag.png" height="14" style="border-radius: 2px;">
+                            </div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 3 - Christmas Promotion -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-receipt">
+                                    <img src="img/christmaspromotion.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Christmas Promotion</div>
+                                    <div class="method-sublabel">Ad:Prime</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 199.00</span></td>
+                        <td><span class="additional-info">+100% Primes-CH</span></td>
+                        <td>
+                            <div class="market-cell">
+                                <img src="img/ch-flag.png" height="14" style="border-radius: 2px;">
+                            </div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 4 - Profile Receipt -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-receipt">
+                                    <img src="img/profilelogo.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Profile Receipt</div>
+                                    <div class="method-sublabel">OTTO's</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 34.00</span></td>
+                        <td>
+                            <span class="additional-info-line">12 Products</span>
+                            <span class="additional-info-line">Primes-CH</span>
+                        </td>
+                        <td>
+                            <div class="market-cell">
+                                <img src="img/ch-flag.png" height="14" style="border-radius: 2px;">
+                            </div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
+                        <td></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 5 - Promotion Receipt OTTO's -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-receipt">
+                                    <img src="img/givinghand.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Promotion Receipt</div>
+                                    <div class="method-sublabel">OTTO's</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 34.00</span></td>
+                        <td>
+                            <span class="additional-info-line">7 Products</span>
+                            <span class="additional-info-line">Primes-CH and Credits</span>
+                        </td>
+                        <td>
+                            <div class="market-cell">
+                                <img src="img/ch-flag.png" height="14" style="border-radius: 2px;">
+                            </div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 6 - Conversion -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-arrow">
+                                    <img src="img/conversionswap.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Conversion</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 500.00</span></td>
+                        <td><span class="additional-info">Primes-CH → Credits</span></td>
+                        <td>
+                            <div class="market-cell">
+                                <img src="img/ch-flag.png" height="14" style="border-radius: 2px;">
+                            </div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 7 - Buy Credits -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-card">
+                                    <img src="img/uparrow.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Buy Credits</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">€500.00</span></td>
+                        <td></td>
+                        <td>
+                            <div class="market-cell">
+                                <img src="img/it-flag.png" height="14" style="border-radius: 2px;">
+                            </div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 8 - Promotion Receipt MIGROS -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-receipt">
+                                    <img src="img/givinghand.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Promotion Receipt</div>
+                                    <div class="method-sublabel">MIGROS</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 220.00</span></td>
+                        <td>
+                            <span class="additional-info-line">+15% Credits</span>
+                            <span class="additional-info-line">+15% Primes-CH</span>
+                        </td>
+                        <td>
+                            <div class="market-cell">
+                                <img src="img/ch-flag.png" height="14" style="border-radius: 2px;">
+                            </div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 9 - Promotion Receipt MANOR -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-receipt">
+                                    <img src="img/givinghand.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Promotion Receipt</div>
+                                    <div class="method-sublabel">MANOR</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 360.00</span></td>
+                        <td>
+                            <span class="additional-info-line">+25% Credits</span>
+                            <span class="additional-info-line">+25% Primes-CH</span>
+                        </td>
+                        <td>
+                            <div class="market-cell">
+                                <img src="img/ch-flag.png" height="14" style="border-radius: 2px;">
+                            </div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-shopper">Shopper</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 10 - Ad:Prime Pro -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-star">
+                                    <img src="img/primeprologo.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Ad:Prime Pro</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">CHF 150.00</span></td>
+                        <td>
+                            <span class="additional-info-line">CHF 50 Credits</span>
+                            <span class="additional-info-line">CHF 100 Primes-CH</span>
+                        </td>
+                        <td>
+                            <div class="market-cell">
+                                <img src="img/ch-flag.png" height="14" style="border-radius: 2px;">
+                            </div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-pro">Pro</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 11 - Redeemed Voucher -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-gift">
+                                    <img src="img/intersparlogo.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Redeemed Voucher</div>
+                                    <div class="method-sublabel">INTERSPAR</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">€100.00</span></td>
+                        <td>
+                            <span class="additional-info-line">100% Credits</span>
+                            <span class="additional-info-line">+5% Primes-CH</span>
+                        </td>
+                        <td>
+                            <div class="market-cell">
+                                <img src="img/at-flag.png" height="14" style="border-radius: 2px;">
+                            </div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-vip">VIP</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                    <!-- Row 12 - Fintech Capitalist Bronze -->
+                    <tr>
+                        <td>
+                            <div class="method-cell">
+                                <div class="method-icon icon-star">
+                                    <img src="img/primesilver.png" alt="">
+                                </div>
+                                <div>
+                                    <div class="method-label">Fintech Capitalist Bronze</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td><span class="value-amount">€500.00</span></td>
+                        <td><span class="additional-info">100% Primes-CH</span></td>
+                        <td>
+                            <div class="market-cell">
+                                <img src="img/ch-flag.png" height="14" style="border-radius: 2px;">
+                            </div>
+                        </td>
+                        <td class="date-cell">2022-07-22 08:13:24</td>
+                        <td><span class="transaction-id">037f***28924</span></td>
+                        <td><span class="user-cell">By <u>MA2E...55MIM</u></span></td>
+                        <td><span class="membership-badge badge-bronze">FC Bronze</span></td>
+                        <td><span class="credits-positive">+ CHF 6.00</span></td>
+                        <td><span class="primes-value">+0.009320 Primes-CH</span></td>
+                        <td>
+                            <button class="details-btn">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <div class="pagination-left">
+                </div>
+                <div class="pagination-right">
+                    <button class="page-btn"><img src="img/firstpage.png" alt=""></button>
+                    <button class="page-btn"><img src="img/prevnav.png" alt=""></button>
+                    <span class="page-info">Page 1 of 6</span>
+                    <button class="page-btn"><img src="img/nextpage.png" alt=""></button>
+                    <button class="page-btn"><img src="img/lastpage.png" alt=""></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <div class="login-footer">
+        <p>Copyright © 2026 Ad:Prime Scan by Blu Vela. All Rights Reserved.</p>
+    </div>
+
+    <script>
+        // Hamburger Menu Toggle
+        const hamburgerBtn = document.getElementById('hamburgerBtn');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarClose = document.getElementById('sidebarClose');
+        const searchModal = document.getElementById('searchModal');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchModalClose = document.getElementById('searchModalClose');
+        const searchButton = document.querySelector('.nav-tabs .search-box button');
+        const modalSearchButton = document.querySelector('.search-modal .search-box button');
+
+        // Toggle hamburger menu
+        hamburgerBtn.addEventListener('click', function () {
+            hamburgerBtn.classList.toggle('active');
+            sidebar.classList.toggle('active');
+        });
+
+        // Close sidebar
+        sidebarClose.addEventListener('click', function () {
+            hamburgerBtn.classList.remove('active');
+            sidebar.classList.remove('active');
+        });
+
+        // Open search modal from navigation search button
+        if (searchButton) {
+            searchButton.addEventListener('click', function (e) {
+                e.preventDefault();
+                searchModal.classList.add('active');
+                searchOverlay.classList.add('active');
+            });
+        }
+
+        // Close search modal
+        searchModalClose.addEventListener('click', function () {
+            searchModal.classList.remove('active');
+            searchOverlay.classList.remove('active');
+        });
+
+        // Close search modal on overlay click
+        searchOverlay.addEventListener('click', function () {
+            searchModal.classList.remove('active');
+            searchOverlay.classList.remove('active');
+        });
+
+        // Show hamburger button on mobile
+        function updateMenuDisplay() {
+            if (window.innerWidth <= 768) {
+                hamburgerBtn.style.display = 'flex';
+            } else {
+                hamburgerBtn.style.display = 'none';
+                hamburgerBtn.classList.remove('active');
+                sidebar.classList.remove('active');
+            }
+        }
+
+        updateMenuDisplay();
+        window.addEventListener('resize', updateMenuDisplay);
+    </script>
